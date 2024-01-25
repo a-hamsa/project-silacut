@@ -9,7 +9,7 @@
 @endsection
 
 @section('isi')
-    <a href="ad_pegawai/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah Pegawai</span></a>
+    <a href="{{ url('opd/kelolapegawai/create') }}" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah Pegawai</span></a>
     <div class="row">
         <div class="col-md">
             <h1 class="card-title"></h1>
@@ -59,9 +59,9 @@
     </div>
 
 
-    {{-- @foreach ($tb_pegawai as $pgw)
+    @foreach ($tb_pegawai as $pgw)
         <!-- Modal Diagnosa-->
-        <div class="modal fade" id="viewperiksa{{ $dps->NIP }}" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade" id="viewperiksa{{ $pgw->NIP }}" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="viewperiksalabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -84,7 +84,7 @@
                                 <td>: {{ $pgw->Tanggal_Lahir }}</td>
                             </tr>
                             //dropdown
-                            <tr>
+                            {{-- <tr>
                                 <td><b>Jenis Kelamin</b></td>
                                 <td>: {{ $dps->jenis_kelamin }}</td>
                             </tr>
@@ -113,7 +113,7 @@
                             <tr>
                                 <td><b>Telapon Pegawai</b></td>
                                 <td>: {{ $dps->telepon_pegawai }}</td>
-                            </tr>
+                            </tr> --}}
                         </table>
                     </div>
                     <div class="modal-footer">
@@ -122,5 +122,5 @@
                 </div>
             </div>
         </div>
-    @endforeach --}}
+    @endforeach
 @endsection

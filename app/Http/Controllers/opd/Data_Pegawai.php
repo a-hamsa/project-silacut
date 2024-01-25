@@ -18,11 +18,9 @@ class Data_Pegawai extends Controller
 
     public function create()
     {
+        $user = auth()->user();
         $tb_pegawai = Tb_Pegawai::all();       
-
-        return view('layout.opd.kelolapegawai',compact(['user','tb_pegawai']))->with([
-            'user' => Auth::user(),
-        ]);
+        return view('layout.opd.kelolapegawai.create',compact(['user','tb_pegawai']));
     }
 
     

@@ -53,7 +53,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => [CekUserLogin::class.':2']], function(){
         //Route::resource('addpegawai', PegawaiController::class);
         Route::get('opd/kelolapegawai', [Data_Pegawai::class,'index'])->name('tb_pegawai');
-        Route::get('ap_dataobat/create', [Data_Pegawai::class,'create']);
+        Route::get('opd/kelolapegawai/create', [Data_Pegawai::class,'create']);
+        Route::delete('opd/kelolapegawai/{NIP}', [Data_Pegawai::class,'destroy'])->name('tb_pegawai.destroy');
     });
 });
 
