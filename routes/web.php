@@ -42,19 +42,16 @@ Route::controller(LoginController::class)->group(function(){
 
 Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => [CekUserLogin::class.':1']], function(){
-        // Route::get('ap_dataobat', [ApotekDataObatController::class,'index'])->name('ap_dataobat'); 
-        // Route::get('ap_dataobat/create', [ApotekDataObatController::class,'create']);
-        // Route::post('ap_dataobat/store', [ApotekDataObatController::class,'store']);
-        // id itu adalah primary dari tabel (NIP)
-        // Route::get('ap_dataobat/{id}/edit', [ApotekDataObatController::class,'edit'])->name('ap_editadminobat');
-        // Route::put('ap_dataobat/{id}', [ApotekDataObatController::class,'update']);
-        // Route::delete('ap_dataobat/{id}', [ApotekDataObatController::class,'destroy'])->name('ap_dataobat.destroy');
+        
     });
     Route::group(['middleware' => [CekUserLogin::class.':2']], function(){
         //Route::resource('addpegawai', PegawaiController::class);
-        Route::get('opd/kelolapegawai', [Data_Pegawai::class,'index'])->name('tb_pegawai');
-        Route::get('opd/kelolapegawai/create', [Data_Pegawai::class,'create']);
-        Route::delete('opd/kelolapegawai/{NIP}', [Data_Pegawai::class,'destroy'])->name('tb_pegawai.destroy');
+        Route::get('opd/kelolapegawai', [Data_Pegawai::class,'index'])->name('kelolapegawai');
+        Route::get('opd/kelolapegawai/create', [Data_Pegawai::class,'create'])->name('kelolapegawai.create');
+        Route::put('opd/kelolapegawai/{id}', [Data_Pegawai::class,'update'])->name('kelolapegawai.update');
+        Route::get('opd/kelolapegawai/{id}/edit', [Data_Pegawai::class,'edit'])->name('kelolapegawai.edit');
+        Route::post('opd/kelolapegawai/store', [Data_Pegawai::class, 'store'])->name('kelolapegawai.store');
+        Route::delete('opd/kelolapegawai/{id}', [Data_Pegawai::class, 'destroy'])->name('kelolapegawai.destroy');
     });
 });
 

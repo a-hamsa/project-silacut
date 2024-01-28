@@ -19,12 +19,13 @@ return new class extends Migration
             $table->unsignedBigInteger('Id_Jenis_Kelamin')->unsigned();
             $table->unsignedBigInteger('Id_Jabatan')->unsigned();
             $table->date('Tanggal_Mulai');
-            $table->string('Golongan', 100);
-            $table->integer('Kuota_Cuti');
+            $table->unsignedBigInteger('Id_Golongan')->unsigned();
+            // $table->integer('Kuota_Cuti');
             $table->string('Alamat_Pegawai', 100);
             $table->integer('Telepon_Pegawai');
 
             $table->foreign('Id_Dinas')->references('Id_Dinas')->on('tb_dinas');
+            $table->foreign('Id_Golongan')->references('Id_Golongan')->on('tb_golongan');
             $table->foreign('Id_Jenis_Kelamin')->references('Id_Jenis_Kelamin')->on('tb_jenis_kelamin');
             $table->foreign('Id_Jabatan')->references('Id_Jabatan')->on('tb_jabatan');
         });

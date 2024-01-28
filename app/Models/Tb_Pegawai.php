@@ -10,11 +10,18 @@ class Tb_Pegawai extends Model
     use HasFactory;
     protected $table='tb_pegawai';
     protected $primaryKey='NIP';
+
+    protected $guarded = [];
+
     public $timestamps = false;
 
     public function dinas()
     {
         return $this->belongsTo(Tb_Dinas::class, 'Id_Dinas');
+    }
+    public function golongan()
+    {
+        return $this->belongsTo(Tb_Golongan::class, 'Id_Golongan');
     }
     public function jenisKelamin()
     {

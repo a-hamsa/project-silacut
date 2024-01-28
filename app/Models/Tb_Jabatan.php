@@ -10,5 +10,7 @@ class Tb_Jabatan extends Model
     use HasFactory;
     protected $table = 'tb_jabatan';
     protected $primaryKey = 'Id_Jabatan';
-    protected $fillable = ['Jabatan'];
+    // protected $fillable = ['Id_Jabatan','Jabatan'];
+    protected $guarded = [];
+
 }

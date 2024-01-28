@@ -9,5 +9,7 @@ class Tb_Role extends Model
 {
     use HasFactory;
     protected $table = 'tb_role';
+    protected $primaryKey = 'Id_Role';
+
     public $timestamps = false;
 }

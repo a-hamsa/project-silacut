@@ -9,7 +9,11 @@
 @endsection
 
 @section('isi')
-    <a href="{{ url('opd/kelolapegawai/create') }}" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah Pegawai</span></a>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <a href="{{ route('kelolapegawai.create') }}" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah
+            Pegawai</span></a>
     <div class="row">
         <div class="col-md">
             <h1 class="card-title"></h1>
@@ -30,19 +34,23 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $pgw->NIP }}</td>
                             <td>{{ $pgw->Nama_Pegawai }}</td>
-                            <td>{{ $pgw->dinas -> Dinas }}</td>
+                            <td>{{ $pgw->dinas->Dinas }}</td>
                             <td></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-outline-info btn-sm"
                                         style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal"
-                                        data-bs-target="#viewperiksa{{ $pgw->NIP }}"><i class="far fa-eye"></i></button>
+                                        data-bs-target="viewperiksa{{ $pgw->id }}"><i class="far fa-eye"></i></button>
 
                                     <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                                    <a href="ad_poliumum/{{ $pgw->NIP }}/edit" class="btn btn-outline-warning btn-sm"
-                                        style="margin-right: 5px; border-radius:5px;"><i class="far fa-edit"></i></a>
+                                    <a href="{{ route('kelolapegawai.edit', ['id' => $pgw->NIP]) }}"
+                                        class="btn btn-outline-warning btn-sm"
+                                        style="margin-right: 5px; border-radius:5px;">
+                                        <i class="far fa-edit"></i>
+                                    </a>
 
-                                    <form action="ad_poliumum/{{ $pgw->NIP }}" method="POST">
+
+                                    <form action="{{ route('kelolapegawai.destroy', ['id' => $pgw->NIP]) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" value="Delete" class="btn btn-outline-secondary btn-sm"
@@ -61,7 +69,7 @@
 
     @foreach ($tb_pegawai as $pgw)
         <!-- Modal Diagnosa-->
-        <div class="modal fade" id="viewperiksa{{ $pgw->NIP }}" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade" id="viewperiksa{{ $pgw->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="viewperiksalabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -72,48 +80,49 @@
                     <div class="modal-body">
                         <table cellpadding="5">
                             <tr>
+                                <td><b>NIP</b></td>
+                                <td>: {{ $pgw->NIP }}</td>
+                            </tr>
+                            <tr>
                                 <td><b>Nama</b></td>
                                 <td>: {{ $pgw->Nama_Pegawai }}</td>
                             </tr>
                             <tr>
-                                <td><b>NIP</b></td>
-                                <td>: {{ $pgw->NIP }}</td>
+                                <td><b>Tempat Lahir</b></td>
+                                <td>: {{ $pgw->Tempat_Lahir }}</td>
                             </tr>
                             <tr>
                                 <td><b>Tanggal Lahir</b></td>
                                 <td>: {{ $pgw->Tanggal_Lahir }}</td>
                             </tr>
-                            //dropdown
-                            {{-- <tr>
+                            <tr>
                                 <td><b>Jenis Kelamin</b></td>
-                                <td>: {{ $dps->jenis_kelamin }}</td>
+                                <td>: {{ $pgw->Id_Jenis_Kelamin }}</td>
                             </tr>
-                            //dropdown
                             <tr>
                                 <td><b>Jabatan</b></td>
-                                <td>: {{ $dps->jenis_kelamin }}</td>
+                                <td>: {{ $pgw->Id_Jabatan }}</td>
                             </tr>
-                            //dropdown
                             <tr>
                                 <td><b>Dinas</b></td>
-                                <td>: {{ $dps->jenis_kelamin }}</td>
+                                <td>: {{ $pgw->Id_Dinas }}</td>
                             </tr>
                             <tr>
                                 <td><b>Tanggal Mulai</b></td>
-                                <td>: {{ $dps->tanggal_mulai }}</td>
+                                <td>: {{ $pgw->Tanggal_Mulai }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Alamat</b></td>
+                                <td>: {{ $pgw->Alamat_Pegawai }}</td>
                             </tr>
                             <tr>
                                 <td><b>Golongan</b></td>
-                                <td>: {{ $dps->golongan }}</td>
+                                <td>: {{ $pgw->Id_Golongan }}</td>
                             </tr>
                             <tr>
-                                <td><b>Alamat Pegawai</b></td>
-                                <td>: {{ $dps->alamat_pegawai }}</td>
+                                <td><b>Telepon Pegawai</b></td>
+                                <td>: {{ $pgw->Telepon_Pegawai }}</td>
                             </tr>
-                            <tr>
-                                <td><b>Telapon Pegawai</b></td>
-                                <td>: {{ $dps->telepon_pegawai }}</td>
-                            </tr> --}}
                         </table>
                     </div>
                     <div class="modal-footer">
@@ -123,4 +132,9 @@
             </div>
         </div>
     @endforeach
+    <script>
+        @if (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}")
+        @endif
+    </script>
 @endsection

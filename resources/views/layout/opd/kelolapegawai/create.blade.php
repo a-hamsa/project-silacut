@@ -9,7 +9,7 @@
 @endsection
 
 @section('isi')
-    <section class="section">
+    {{-- <section class="section">
         <div class="row">
             <div class="col-lg-12">
 
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="section">
         <div class="row">
@@ -32,92 +32,187 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Form Tambah Data Pegawai</h5>
-                        <form action="" method="POST">
+                        <form method="POST" action="{{ route('kelolapegawai.store') }}">
                             @csrf
                             <div class="col-md-12" style=" margin-bottom:15px;">
-                                <label for="inputText" class="form-label">NIP</label>
+                                <label for="txtid" class="form-label">NIP</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Masukkan NIP" name="nip"
-                                        id="nip">
+                                    <input type="text" class="form-control @error('txtid') is-invalid @enderror"
+                                        placeholder="Masukkan NIP" name="txtid" id="txtid"
+                                        value="{{ old('txtid') }}">
+                                    @error('txtid')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
-                                <label for="inputText" class="form-label">Nama Pegawai</label>
+                                <label for="txtname" class="form-label">Nama Pegawai</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Masukkan Nama" name="nama"
-                                        id="nama">
+                                    <input type="text" class="form-control @error('txtname') is-invalid @enderror"
+                                        placeholder="Masukkan Nama" name="txtname" id="txtname"
+                                        value="{{ old('txtname') }}">
+                                    @error('txtname')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
-                                <label for="inputDate" class="form-label required-label">Tanggal Lahir</label>
+                                <label for="txtbirthplace" class="form-label">Tempat Lahir</label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+                                    <input type="text" class="form-control @error('txtbirthplace') is-invalid @enderror"
+                                        placeholder="Tempat Lahir" name="txtbirthplace" id="txtbirthplace"
+                                        value="{{ old('txtbirthplace') }}">
+                                    @error('txtbirthplace')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
+                                <label for="txtdateofbirth" class="form-label required-label">Tanggal Lahir</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control @error('txtdateofbirth') is-invalid @enderror"
+                                        name="txtdateofbirth" id="txtdateofbirth" value="{{ old('txtdateofbirth') }}">
+                                    @error('txtdateofbirth')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" style="margin-bottom:15px;">
                                 <label class="form-label">Jenis Kelamin</label>
                                 <div class="input-group">
-                                    <select class="form-select" aria-label="Default select example" name="jenis_kelamin">
+                                    <select class="form-select @error('txtgender') is-invalid @enderror"
+                                        aria-label="Default select example" id="txtgender" name="txtgender">
                                         <option selected>Pilih Jenis Kelamin</option>
-                                        <option value="Laki-Laki">Laki-Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
+                                        @foreach ($tb_jenis_kelamin as $tbjk)
+                                            <option value="{{ $tbjk->Id_Jenis_Kelamin }}"
+                                                {{ old('txtgender') == $tbjk->Id_Jenis_Kelamin ? 'selected' : '' }}>
+                                                {{ $tbjk->Jenis_Kelamin }}
+                                            </option>
+                                        @endforeach
+                                        @error('txtgender')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12" style=" margin-bottom:15px;">
+
+                            <div class="col-md-12" style="margin-bottom:15px;">
                                 <label class="form-label">Jabatan</label>
                                 <div class="input-group">
-                                    <select class="form-select" aria-label="Default select example" name="jabatan">
+                                    <select class="form-select @error('txtposition') is-invalid @enderror"
+                                        aria-label="Default select example" name="txtposition">
                                         <option selected>Pilih Jabatan</option>
-                                        <option value="I">I</option>
-                                        <option value="II">II</option>
-                                        <option value="III">III</option>
+                                        @foreach ($tb_jabatan as $tbj)
+                                            <option value="{{ $tbj->Id_Jabatan }}"
+                                                {{ old('txtposition') == $tbj->Id_Jabatan ? 'selected' : '' }}>
+                                                {{ $tbj->Jabatan }}
+                                            </option>
+                                        @endforeach
+                                        @error('txtposition')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label class="form-label">Dinas</label>
                                 <div class="input-group">
-                                    <select class="form-select" aria-label="Default select example" name="dinas">
+                                    <select class="form-select @error('txtdepartment') is-invalid @enderror"
+                                        aria-label="Default select example" name="txtdepartment">
                                         <option selected>Pilih Dinas</option>
-                                        <option value="I">I</option>
-                                        <option value="II">II</option>
-                                        <option value="III">III</option>
+                                        @foreach ($tb_dinas as $tbd)
+                                            <option value="{{ $tbd->Id_Dinas }}"
+                                                {{ old('txtdepartment') == $tbd->Id_Dinas ? 'selected' : '' }}>
+                                                {{ $tbd->Dinas }}
+                                            </option>
+                                        @endforeach
+                                        @error('txtdepartment')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
-                                <label for="inputDate" class="form-label required-label">Tanggal Mulai</label>
+                                <label for="txtstartingdate" class="form-label required-label">Tanggal Mulai</label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control" name="tanggal_mulai" id="tanggal_mulai"
-                                        value="<?php echo date('Y-m-d'); ?>">
+                                    <input type="date" class="form-control" name="txtstartingdate" id="txtstartingdate"
+                                        value="{{ old('txtstartingdate', date('Y-m-d')) }}">
+                                    @error('txtstartingdate')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
-                                <label for="inputText" class="form-label">Alamat</label>
+                                <label for="txtaddress" class="form-label">Alamat</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Masukkan Alamat Pegawai"
-                                        name="alamat_pegawai" id="alamat_pegawai">
+                                    <input type="text" class="form-control @error('txtaddress') is-invalid @enderror"
+                                        placeholder="Masukkan Alamat Pegawai" name="txtaddress" id="txtaddress">
+                                    @error('txtaddress')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label class="form-label">Golongan</label>
                                 <div class="input-group">
-                                    <select class="form-select" aria-label="Default select example" name="golongan">
+                                    <select class="form-select @error('txtgroup') is-invalid @enderror"
+                                        aria-label="Default select example" name="txtgroup">
                                         <option selected>Pilih Golongan</option>
-                                        <option value="I">I</option>
-                                        <option value="II">II</option>
-                                        <option value="III">III</option>
+                                        @foreach ($tb_golongan as $tbg)
+                                            <option value="{{ $tbg->Id_Golongan }}"
+                                                {{ old('txtgroup') == $tbg->Id_Golongan ? 'selected' : '' }}>
+                                                {{ $tbg->Golongan }}
+                                            </option>
+                                        @endforeach
+                                        @error('txtgroup')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-md-12" style=" margin-bottom:15px;">
-                                <label for="inputText" class="form-label">Telepon Pegawai</label>
+                                <label for="txtphone" class="form-label">Telepon Pegawai</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Masukkan Nomor Telepon"
-                                        name="telepon_pegawai" id="telepon_pegawai">
+                                    <input type="text" class="form-control @error('txtphone') is-invalid @enderror"
+                                        placeholder="Masukkan Nomor Telepon" name="txtphone" id="txtphone"
+                                        value="{{ old('txtphone') }}">
+                                    @error('txtphone')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
+                            
                             <div class="col-md-12">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <a href="javascript:history.back()" class="btn btn-outline-secondary"

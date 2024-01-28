@@ -10,5 +10,7 @@ class Tb_Jenis_Kelamin extends Model
     use HasFactory;
     protected $table = 'tb_jenis_kelamin';
     protected $primaryKey = 'Id_Jenis_Kelamin';
-    protected $fillable = ['Jenis_Kelamin'];
+    // protected $fillable = ['Id_Jenis_Kelamin','Jenis_Kelamin'];
+    protected $guarded = [];
+
 }

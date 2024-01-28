@@ -11,6 +11,8 @@ class Tb_User extends Model implements Authenticatable
 {
     use HasFactory;
     protected $table = 'tb_user';
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'username',
         'password',
