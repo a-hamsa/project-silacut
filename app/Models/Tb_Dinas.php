@@ -13,4 +13,6 @@ class Tb_Dinas extends Model
     // protected $fillable = ['Id_Dinas','Dinas'];
     protected $guarded = [];
 
+    public $timestamps = false;
+
 }

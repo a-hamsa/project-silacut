@@ -13,12 +13,18 @@ class Tb_User extends Model implements Authenticatable
     protected $table = 'tb_user';
     protected $primaryKey = 'id';
 
-    protected $fillable = [
-        'username',
-        'password',
-        'Id_Role',
-    ];
+    protected $guarded = [];
     public $timestamps = false;
+
+    public function dinas()
+    {
+        return $this->belongsTo(Tb_Dinas::class, 'Id_Dinas');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Tb_Role::class, 'Id_Role');
+    }
 
     public function getAuthIdentifierName()
     {

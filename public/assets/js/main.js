@@ -336,6 +336,8 @@
 
 })();
 
-$(document).ready(function () {
-  $('#data_pegawai').DataTable();
-});
+// $(document).ready(function () {
+//   $('#kelolapegawaibkd').DataTable();
+// });
+
+new DataTable('#kelolapegawaibkd');

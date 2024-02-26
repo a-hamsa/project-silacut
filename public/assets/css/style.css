@@ -610,7 +610,7 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: #3D5A80;
 }
 
 @media (max-width: 1199px) {
@@ -684,7 +684,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #000000;
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -694,25 +694,25 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4CB9E7;
+  color: #000000;
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
-  background: #fff;
+  color: #f6f9ff;
+  background: #3D5A80;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: #000000;
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4CB9E7;
+  color: #000000;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -750,11 +750,26 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: #000000;
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #4154f1;
+  background-color: #000000;
+}
+
+.logout-button {
+  margin-top: 50px; /* Adjust the value as needed */
+}
+
+.btn-custom {
+  background-color: #3D5A80;
+  color: #fff;
+}
+
+.btn-custom:hover {
+  background-color: transparent; /* Jadikan latar belakang transparan */
+  color: #3D5A80;
+  border: 1px solid #3D5A80; /* Tambahkan border pada tombol */
 }
 
 /*--------------------------------------------------------------

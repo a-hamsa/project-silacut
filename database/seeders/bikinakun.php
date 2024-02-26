@@ -15,8 +15,15 @@ class bikinakun extends Seeder
     {
         DB::table('tb_user')->insert([
             'username' => 'bkd',
-            'password' => bcrypt('1234'), // Contoh pembuatan NIP random
+            'password' => bcrypt('1234'), 
             'Id_Role' => 1,
+            'Id_Dinas'=> 2,
+        ]);
+        DB::table('tb_user')->insert([
+            'username' => 'opd',
+            'password' => bcrypt('1234'), 
+            'Id_Role' => 2,
+            'Id_Dinas' => 3,
         ]);
     }
 }

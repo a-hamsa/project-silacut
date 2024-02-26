@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('username', 50);
             $table->string('password');
             $table->unsignedBigInteger('Id_Role');
+            $table->unsignedBigInteger('Id_Dinas');
             $table->foreign('Id_Role')->references('Id_Role')->on('tb_role');
+            $table->foreign('Id_Dinas')->references('Id_Dinas')->on('tb_dinas');
         });
     }
 
