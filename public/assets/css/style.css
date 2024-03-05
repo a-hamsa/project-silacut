@@ -383,6 +383,7 @@ h6 {
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
   padding-left: 20px;
+  margin-left: 300px; 
   /* Toggle Sidebar Button */
   /* Search Bar */
 }
@@ -599,7 +600,7 @@ h6 {
 --------------------------------------------------------------*/
 .sidebar {
   position: fixed;
-  top: 60px;
+  top: 0px;
   left: 0;
   bottom: 0;
   width: 300px;
@@ -758,7 +759,7 @@ h6 {
 }
 
 .logout-button {
-  margin-top: 50px; /* Adjust the value as needed */
+  margin-top: 50px;
 }
 
 .btn-custom {
@@ -767,9 +768,57 @@ h6 {
 }
 
 .btn-custom:hover {
-  background-color: transparent; /* Jadikan latar belakang transparan */
+  background-color: transparent; 
   color: #3D5A80;
-  border: 1px solid #3D5A80; /* Tambahkan border pada tombol */
+  border: 1px solid #3D5A80; 
+}
+
+.logout-button {
+  position: absolute;
+  bottom: 20px; 
+  left: 20px; 
+}
+
+.logout-button {
+  margin-top: 20px; 
+}
+
+.logout-button button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #3D5A80;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  width: 258px; 
+}
+
+.logout-button button:hover {
+  background-color: #fff; 
+  color: #000000; 
+  border-color: #fff;
+}
+
+.logout-button button i {
+  margin-right: 10px; 
+}
+
+.logout-button button span {
+  flex: 1; 
+  text-align: left; 
+}
+
+.logo_sidebar {
+  text-align: center; /* Menyusun gambar logo ke tengah */
+  margin-bottom: 40px; /* Memberikan jarak antara logo dan daftar navigasi */
+}
+
+.logo-img {
+  max-width: 150px; /* Menyesuaikan ukuran gambar logo */
 }
 
 /*--------------------------------------------------------------
@@ -1245,4 +1294,11 @@ h6 {
   text-align: center;
   font-size: 13px;
   color: #012970;
+}
+
+/* MODAL */
+.modal-header {
+  background-color: #3D5A80; 
+  color: #ffffff; 
+  border-bottom: 1px solid #aab7cf; 
 }

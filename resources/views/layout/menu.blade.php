@@ -25,7 +25,7 @@
   <a class="nav-link collapsed" data-bs-target="#registrasi-nav" data-bs-toggle="collapse" href="{{ url('ad_pegawai') }}">
       <i class="fa-solid fa-id-card"></i><span>Komponen</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
-  <ul id="registrasi-nav" class="nav-content collapse {{ Request::is('kelolapegawaibkd') || Request::is('kelolaopd') || Request::is('kelola_pengguna') ? 'show':'' }}" data-bs-parent="#sidebar-nav">
+  <ul id="registrasi-nav" class="nav-content collapse {{ Request::is('kelolapegawaibkd') || Request::is('kelolaopd') || Request::is('kelolapengguna') ? 'show':'' }}" data-bs-parent="#sidebar-nav">
     <li class="nav-item mb-2">
       <a class="nav-link {{ Request::is('kelolapegawaibkd') ? 'active':'' }}"href="{{ url('kelolapegawaibkd') }}">
         <i class="bi bi-circle"></i><span>Kelola Pegawai</span>
@@ -37,7 +37,7 @@
       </a>
     </li>
     <li class="nav-item mb-2">
-      <a class="nav-link {{ Request::is('kelola_pengguna') ? 'active':'' }}"href="{{ url('kelolapengguna') }}">
+      <a class="nav-link {{ Request::is('kelolapengguna') ? 'active':'' }}"href="{{ url('kelolapengguna') }}">
         <i class="bi bi-circle"></i><span>Kelola Pengguna</span>
       </a>
     </li>
@@ -47,11 +47,11 @@
 
 
 <!-- Logout -->
-<li class="nav-item">
+{{-- <li class="nav-item">
 <a class="nav-link "  href="{{ url('logout') }}">
     <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
 </a>
-</li>
+</li> --}}
 
 <!-- MENU OPD -->
 @elseif ($user->Id_Role == 2)
@@ -76,11 +76,11 @@
 </li>
 
 <!-- Logout -->
-<li class="nav-item" style="margin-top: 416px;">
+{{-- <li class="nav-item">
   <a class="nav-link "  href="{{ url('logout') }}">
       <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
   </a>
-</li>
+</li> --}}
 
 <!-- MENU SUPERADMIN -->
 @elseif ($user->Id_Role == 3)

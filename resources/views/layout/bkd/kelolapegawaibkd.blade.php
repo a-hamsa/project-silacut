@@ -49,13 +49,22 @@
                                     </a>
 
 
-                                    <form action="kelolapegawaibkd/{{ $pgw->NIP }}" method="POST">
+                                    {{-- <form action="kelolapegawaibkd/{{ $pgw->NIP }}" method="POST" id="delete">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" value="Delete"
                                             class="btn btn-outline-secondary btn-sm delete"
                                             data-nama="{{ $pgw->Nama_Pegawai }}" style="border-radius:5px;"><i
                                                 class="far fa-trash-alt"></i></button>
+                                    </form> --}}
+                                    <form action="kelolapegawaibkd/{{ $pgw->NIP }}" method="POST" id="deleteForm">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm delete"
+                                                data-nip="{{ $pgw->NIP }}" data-nama="{{ $pgw->Nama_Pegawai }}"
+                                                style="border-radius:5px;">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </td>
@@ -67,7 +76,7 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         $('.delete').click(function() {
             var hapuspegawai = $(this).attr('data-nama');
             swal({
@@ -88,7 +97,7 @@
                     }
                 });
         });
-    </script>
+    </script> --}}
 
     @foreach ($tb_pegawai as $pgw)
         <!-- Modal Diagnosa-->

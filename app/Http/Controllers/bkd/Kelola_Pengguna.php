@@ -69,13 +69,13 @@ public function store(Request $request)
         'txtusername' => 'required',
         'txtpassword' => 'required',
         'txtrepeatpassword' => 'required|same:txtpassword',
-        'txtdepartment' => 'required',
+        'txtdepartment' => 'exists:tb_dinas,Id_Dinas',
     ], [
         'txtusername.required' => 'Kolom Username harus diisi.',
         'txtpassword.required' => 'Kolom Password harus diisi.',
         'txtrepeatpassword.required' => 'Kolom Ulangi Password harus diisi.',
         'txtrepeatpassword.same' => 'Kolom Ulangi Password harus sama dengan Password.',
-        'txtdepartment.required' => 'Pilih Unit Kerja dari daftar yang tersedia.',
+        'txtdepartment.exists' => 'Pilih Unit Kerja dari daftar yang tersedia.',
     ]);
 
     // Jika validasi gagal, proses akan berhenti di sini dan pesan kesalahan akan otomatis ditampilkan kepada pengguna.

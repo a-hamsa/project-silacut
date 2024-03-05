@@ -35,7 +35,7 @@
                                 <label for="txtpassword" class="form-label">Password Baru</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control @error('txtpassword') is-invalid @enderror" 
-                                    placeholder="Masukkan Password Baru" name="txtpassword" id="txtpasswordbaru">
+                                    placeholder="Masukkan Password Baru" name="txtpassword" id="txtpassword">
                                     <button type="button" id="togglePassword" class="btn btn-secondary"><i
                                             class="fa-solid fa-eye"></i></button>
                                 </div>
@@ -100,17 +100,17 @@ document.getElementById('togglePassword_Ulang').addEventListener('click', functi
 });
 
 // Validasi password saat submit form
-document.querySelector('form').addEventListener('submit', function(event) {
-    const passwordInput = document.getElementById('txtpassword');
-    const repeatPasswordInput = document.getElementById('txtrepeatpassword');
-    const password = passwordInput.value;
-    const repeatPassword = repeatPasswordInput.value;
+// document.querySelector('form').addEventListener('submit', function(event) {
+//     const passwordInput = document.getElementById('txtpassword');
+//     const repeatPasswordInput = document.getElementById('txtrepeatpassword');
+//     const password = passwordInput.value;
+//     const repeatPassword = repeatPasswordInput.value;
 
-    if (password !== repeatPassword) {
-        event.preventDefault(); // Mencegah pengiriman form
-        alert('Ulangi password baru tidak sesuai dengan password baru. Silakan periksa kembali.');
-    }
-});
+//     if (password !== repeatPassword) {
+//         event.preventDefault(); // Mencegah pengiriman form
+//         alert('Ulangi password baru tidak sesuai dengan password baru. Silakan periksa kembali.');
+//     }
+// });
 
     </script>
 @endsection

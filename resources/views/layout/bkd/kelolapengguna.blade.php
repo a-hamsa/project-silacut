@@ -36,11 +36,17 @@ Kelola Pengguna
                     <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
                     <a href="kelolapengguna/{{ $tbu->id }}/edit"" class="btn btn-outline-warning btn-sm" style="margin-right: 5px; border-radius:5px;"><i class="far fa-edit"></i></a>
             
-                    <form action="kelolapengguna/{{ $tbu->id }}" method="POST">
+                    {{-- <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteForm">
                         @csrf
                         @method('delete')
                         <button type="submit" value="Delete" class="btn btn-outline-secondary btn-sm" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
+                    </form> --}}
+                    <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteForm">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-outline-secondary btn-sm delete-btn" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
                     </form>
+                    
                 </div>
             </td>
             </tr>
