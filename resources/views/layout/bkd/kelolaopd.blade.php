@@ -42,7 +42,7 @@
                                         <i class="far fa-edit"></i>
                                     </a>
 
-                                    <form action="kelolaopd/{{ $dns->Id_Dinas }}" method="POST" id="deleteForm">
+                                    <form action="kelolaopd/{{ $dns->Id_Dinas }}" method="POST" id="deleteFormKelolaOpd">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-secondary btn-sm delete" data-nama="{{ $dns->Dinas }}"

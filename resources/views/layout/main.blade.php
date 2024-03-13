@@ -72,7 +72,12 @@
       <a class="logout-button" href="{{ url('logout') }}">
         <button>
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          <span>Logout</span>
+          <span href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </span>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </button>
       </a>
       
@@ -133,7 +138,7 @@
     <!-- Toastr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script>
+    {{-- <script>
         $(function() {
             $(document).on('click', '.delete', function(e) {
                 e.preventDefault();
@@ -166,7 +171,43 @@
                 });
             });
         });
+    </script> --}}
+
+    <script>
+        $(function() {
+            $(document).on('click', '.delete', function(e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+                var nama = $(this).data('nama');
+                var title, text;
+    
+                // Mengecek apakah tombol delete terkait dengan pegawai atau OPD
+                if ($(this).data('nip')) {
+                    title = 'Anda akan menghapus pegawai dengan NIP: ';
+                    text = $(this).data('nip') + ' - ' + nama;
+                } else {
+                    title = 'Apakah Anda yakin?';
+                    text = 'Anda akan menghapus pengguna: ' + nama;
+                }
+    
+                Swal.fire({
+                    title: title,
+                    text: text,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
     </script>
+    
 
     <!-- Toastr Alert -->
     <script>

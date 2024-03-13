@@ -16,12 +16,27 @@
 }
 .side-image{
     background-color: #3B71CB ;
+    background-image: url('assets/img/logomorowalilogin.png');
     background-position: center;
-    background-size: cover;
+    background-size: contain; /* Ubah ke 'contain' agar gambar sesuai dengan lebar kontainer */
     background-repeat: no-repeat;
     border-radius: 10px 0 0 10px;
     position: relative;
+    height: 100%; /* Sesuaikan dengan tinggi gambar */
 }
+
+.new-image {
+    max-width: 100%; /* Maksimum lebar gambar adalah 100% dari lebar parent */
+    max-height: 200px; /* Atur tinggi maksimum gambar sesuai kebutuhan Anda */
+    display: block; /* Menghilangkan spasi di bawah gambar */
+    margin-bottom: 20px; /* Atur margin bawah agar tidak terlalu dekat dengan teks */
+}
+
+.logo-img {
+    width: 100%; /* Ubah lebar gambar agar sesuai dengan lebar kolom */
+    height: auto; /* Sesuaikan tinggi gambar agar proporsi terjaga */
+}
+
 .row{
   width:  900px;
   height:500px;

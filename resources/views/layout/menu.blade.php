@@ -1,13 +1,13 @@
 <!-- MENU BKD -->
 @if($user->Id_Role == 1)
 <li class="nav-item">
-  <a class="nav-link {{ Request::is('dashboard') ? '':'collapsed' }}" href="{{ url('dashboard') }}">
+  <a class="nav-link {{ Request::is('dashboardbkd') ? '':'collapsed' }}" href="{{ url('dashboardbkd') }}">
   <i class="fa-solid fa-house"></i>
       <span>Dashboard</span>
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link {{ Request::is('datacuti') ? '':'collapsed' }}" href="{{ route('datacuti') }}">
+  <a class="nav-link {{ Request::is('datacutibkd') ? '':'collapsed' }}" href="{{ route('datacutibkd') }}">
       <i class="fa-solid fa-clipboard"></i>
       <span>Data Cuti</span>
   </a>
@@ -45,31 +45,23 @@
 </li>
 <!-- Komponen -->
 
-
-<!-- Logout -->
-{{-- <li class="nav-item">
-<a class="nav-link "  href="{{ url('logout') }}">
-    <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span>
-</a>
-</li> --}}
-
 <!-- MENU OPD -->
 @elseif ($user->Id_Role == 2)
 <li class="nav-item">
-  <a class="nav-link {{ Request::is('dashboard') ? '':'collapsed' }}" href="{{ url('dashboard') }}">
+  <a class="nav-link {{ Request::is('dashboardopd') ? '':'collapsed' }}" href="{{ url('dashboardopd') }}">
   <i class="fa-solid fa-house"></i>
       <span>Dashboard</span>
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link {{ Request::is('data_cuti') ? '':'collapsed' }}" href="{{ url('data_cuti') }}">
+  <a class="nav-link {{ Request::is('datacutiopd') ? '':'collapsed' }}" href="{{ url('datacutiopd') }}">
       <i class="fa-solid fa-clipboard"></i>
       <span>Data Cuti</span>
   </a>
 </li>
 
 <li class="nav-item">
-  <a class="nav-link {{ Request::is('addpegawai') ? '':'collapsed' }}" href="{{ url('opd/kelolapegawai') }}">
+  <a class="nav-link {{ Request::is('kelolapegawaiopd') ? '':'collapsed' }}" href="{{ url('kelolapegawaiopd') }}">
       <i class="fa-solid fa-address-card"></i>
       <span>Kelola Pegawai</span>
   </a>

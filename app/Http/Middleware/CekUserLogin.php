@@ -21,8 +21,7 @@ class CekUserLogin
         }
 
         $user = Auth::user();
-        if($user->Id_Role == $rules)
-        return $next($request);
+        if($user->Id_Role == $rules) return $next($request);
         return redirect('login')->with('error', "tidak ada akses");
     }
 }

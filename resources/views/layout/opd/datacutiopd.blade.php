@@ -1,18 +1,18 @@
 @extends('layout.main')
 
 @section('judul')
-    Data Pegawai
+    Data Cuti
 @endsection
 
 @section('subjudul')
-    Kelola Pegawai
+    Data Cuti
 @endsection
 
 @section('isi')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <a href="kelolapegawaibkd/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah
+    <a href="datacutiopd/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah
             Pegawai</span></a>
     <div class="row">
         <div class="col-md">
@@ -22,42 +22,36 @@
                     <tr>
                         <th>No</th>
                         <th>NIP</th>
-                        <th>Nama</th>
-                        <th>Satuan Kerja</th>
-                        <th>Action</th>
+                        <th>Nama Pegawai</th>
+                        <th>Jenis Cuti</th>
+                        <th>Tanggal Cuti</th>
+                        <th>Diajukan</th>
+                        {{-- <th>Aksi</th> --}}
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($tb_pegawai as $pgw)
+                    @foreach ($tb_cuti as $tbc)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $pgw->NIP }}</td>
-                            <td>{{ $pgw->Nama_Pegawai }}</td>
-                            <td>{{ $pgw->dinas->Dinas }}</td>
-                            <td>
+                            <td>{{ $tbc->pegawai->NIP}}</td>
+                            <td>{{ $tbc->pegawai->Nama_Pegawai }}</td>
+                            <td>{{ $tbc->jeniscuti->Nama_Jenis_Cuti}}</td>
+                            <td>{{ $tbc->Tanggal_Mulai_Cuti }} s.d {{ $tbc->Tanggal_Berakhir_Cuti }}</td>
+                            <td>{{ $tbc->Tanggal_Pengajuan}}</td>
+                            {{-- <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-outline-info btn-sm"
                                         style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal"
-                                        data-bs-target="#viewperiksa{{ $pgw->NIP }}"><i class="far fa-eye"></i></button>
+                                        data-bs-target="#viewperiksa{{ $tbc->Id_Data_Cuti }}"><i class="far fa-eye"></i></button>
 
                                     <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                                    <a href="kelolapegawaibkd/{{ $pgw->NIP }}/edit"
+                                    <a href="kelolapegawaibkd/{{ $pgw->Id_Data_Cuti }}/edit"
                                         class="btn btn-outline-warning btn-sm"
                                         style="margin-right: 5px; border-radius:5px;">
                                         <i class="far fa-edit"></i>
                                     </a>
-
-
-                                    {{-- <form action="kelolapegawaibkd/{{ $pgw->NIP }}" method="POST" id="delete">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" value="Delete"
-                                            class="btn btn-outline-secondary btn-sm delete"
-                                            data-nama="{{ $pgw->Nama_Pegawai }}" style="border-radius:5px;"><i
-                                                class="far fa-trash-alt"></i></button>
-                                    </form> --}}
-                                    <form action="kelolapegawaibkd/{{ $pgw->NIP }}" method="POST" id="deleteFormKelolaPegawaiBkd">
+                                    <form action="kelolapegawaibkd/{{ $pgw->Id_Data_Cuti }}" method="POST" id="deleteFormKelolaPegawaiBkd">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-secondary btn-sm delete"
@@ -67,7 +61,7 @@
                                         </button>
                                     </form>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -76,30 +70,8 @@
         </div>
     </div>
 
-    {{-- <script>
-        $('.delete').click(function() {
-            var hapuspegawai = $(this).attr('data-nama');
-            swal({
-                    title: "Apa Anda Yakin Ingin Menghapus ?",
-                    text: "Apa Anda Yakin Ingin Menghapus Data Pegawai " + hapuspegawai + " !",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location = "kelolapegawaibkd" + hapuspegawai;
-                        swal("Poof! Your imaginary file has been deleted!", {
-                            icon: "success",
-                        });
-                    } else {
-                        swal("Batal Menghapus Data Pegawai " + hapuspegawai + " ");
-                    }
-                });
-        });
-    </script> --}}
 
-    @foreach ($tb_pegawai as $pgw)
+    {{-- @foreach ($tb_pegawai as $pgw)
         <!-- Modal Diagnosa-->
         <div class="modal fade" id="viewperiksa{{ $pgw->NIP }}" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="viewperiksalabel" aria-hidden="true">
@@ -163,5 +135,5 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 @endsection
