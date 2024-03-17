@@ -15,7 +15,7 @@ Dashboard
           <div class="row">
             <div class="col">
               <div class="row text-secondary">
-                <h5 class="card-title">Jumlah Pegawai <span>| Total</span></h5>
+                <h5 class="card-title">Jumlah Pegawai</h5>
               </div>
               <div class="row fw-bold">
                 <h4>3511</h4>
@@ -38,7 +38,7 @@ Dashboard
           <div class="row">
             <div class="col">
               <div class="row text-secondary">
-                <h5 class="card-title">Data Cuti <span>| Jumlah</span></h5>
+                <h5 class="card-title">Data Cuti</h5>
               </div>
               <div class="row fw-bold">
                 <h4>3511</h4>
