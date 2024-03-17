@@ -1,14 +1,10 @@
 @extends('layout.main')
 
-@section('judul')
-Data Pengguna
+@section('Title')
+Data Pengguna Kelola Pengguna
 @endsection
 
-@section('subjudul')
-Kelola Pengguna
-@endsection
-
-@section('isi')
+@section('content')
 <a href="kelolapengguna/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span>    Tambah Pengguna</span></a>
 <div class="row">
     <div class="col-md">

@@ -1,10 +1,10 @@
 @extends('layout.main')
 
-@section('judul')
+@section('title')
     Dashboard
 @endsection
 
-@section('isi')
+@section('content')
     <section class="section dashboard">
         <div class="row">
 
