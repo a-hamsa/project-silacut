@@ -10,13 +10,13 @@
       <hr>
     </nav>
     <!-- Logout link outside the nav element -->
-    <div class="justify-content-end mt-auto px-3">
-      <a href="{{ url('logout') }}" class="d-block text-black">
+    <div class="justify-content-end mt-auto px-1">
+      <a href="{{ url('logout') }}" class="btn w-100 d-block text-black" style="background: gray;">
         <div class="row align-items-center">
           <div class="col-auto">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </div>
-          <div class="col">
+          <div class="col text-start">
             <span>Logout</span>
           </div>
         </div>

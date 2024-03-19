@@ -335,9 +335,3 @@
   }
 
 })();
-
-// $(document).ready(function () {
-//   $('#kelolapegawaibkd').DataTable();
-// });
-
-new DataTable('#kelolapegawaibkd');

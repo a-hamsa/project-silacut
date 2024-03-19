@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('judul')
+@section('title')
     Data Pegawai Kelola Pegawai
 @endsection
 
