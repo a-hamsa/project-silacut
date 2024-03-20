@@ -5,18 +5,51 @@
 @endsection
 
 @section('content')
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="formModalLabel">Detail Cuti</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-2">
+                <label for="recipient-name" class="col-form-label">Pilih Pegawai</label>
+            </div>
+            <div class="col-10">
+                <select class="w-100" name="pegawai" id="pegawai" placeholder="-- Nama Pegawai --">
+                    @foreach ($tb_cuti as $tbc)
+                        <option value="">{{$tbc->pegawai->Nama_Pegawai}}</option>
+                    @endforeach
+                </select>
+                <!-- <input type="text" class="form-control" id="recipient-name"> -->
+            </div>
+          </div>
+          <hr style="height:3px;border:none;color:#000;background-color:#000;">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="p-4">
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-end">
-                <a href="datacutiopd/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span>Usul Cuti</span></a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal" data-bs-whatever="@mdo"><i class="fa-solid fa-user-plus me-2"></i><span>Usul Cuti</span></button>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md">
             <h1 class="card-title"></h1>
-            <table id="kelolapegawaibkd" class="table table-striped" style="width:100%; ">
+            <table id="kelolapegawaiopd" class="table table-striped" style="width:100%; ">
                 <thead>
                     <tr>
                         <th>No</th>

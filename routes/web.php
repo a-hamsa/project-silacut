@@ -53,4 +53,3 @@ Route::group(['middleware' => ['auth']], function(){
         // Route::resource('addpegawai', PegawaiController::class);
     });
 });
-
