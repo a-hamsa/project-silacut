@@ -1,14 +1,10 @@
 @extends('layout.main')
 
-@section('judul')
-Data Pengguna
+@section('Title')
+Data Pengguna Kelola Pengguna
 @endsection
 
-@section('subjudul')
-Kelola Pengguna
-@endsection
-
-@section('isi')
+@section('content')
 <a href="kelolapengguna/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span>    Tambah Pengguna</span></a>
 <div class="row">
     <div class="col-md">
@@ -41,7 +37,7 @@ Kelola Pengguna
                         @method('delete')
                         <button type="submit" value="Delete" class="btn btn-outline-secondary btn-sm" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
                     </form> --}}
-                    <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteForm">
+                    <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteFormKelolaPengguna">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-outline-secondary btn-sm delete-btn" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>

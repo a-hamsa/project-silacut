@@ -1,14 +1,10 @@
 @extends('layout.main')
 
-@section('judul')
-    Data Pegawai
+@section('title')
+    Data Pegawai Kelola Pegawai
 @endsection
 
-@section('subjudul')
-    Kelola Pegawai
-@endsection
-
-@section('isi')
+@section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -57,7 +53,7 @@
                                             data-nama="{{ $pgw->Nama_Pegawai }}" style="border-radius:5px;"><i
                                                 class="far fa-trash-alt"></i></button>
                                     </form> --}}
-                                    <form action="kelolapegawaibkd/{{ $pgw->NIP }}" method="POST" id="deleteForm">
+                                    <form action="kelolapegawaibkd/{{ $pgw->NIP }}" method="POST" id="deleteFormKelolaPegawaiBkd">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-secondary btn-sm delete"

@@ -1,14 +1,10 @@
 @extends('layout.main')
 
-@section('judul')
-    Data Pegawai
+@section('title')
+    Data Pegawai Edit Data Pegawai
 @endsection
 
-@section('subjudul')
-    Edit Data Pegawai
-@endsection
-
-@section('isi')
+@section('content')
     {{-- <section class="section">
         <div class="row">
             <div class="col-lg-12">

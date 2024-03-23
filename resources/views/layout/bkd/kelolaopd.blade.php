@@ -1,10 +1,10 @@
 @extends('layout.main')
 
-@section('judul')
+@section('title')
     Kelola OPD
 @endsection
 
-@section('isi')
+@section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -42,7 +42,7 @@
                                         <i class="far fa-edit"></i>
                                     </a>
 
-                                    <form action="kelolaopd/{{ $dns->Id_Dinas }}" method="POST" id="deleteForm">
+                                    <form action="kelolaopd/{{ $dns->Id_Dinas }}" method="POST" id="deleteFormKelolaOpd">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-secondary btn-sm delete" data-nama="{{ $dns->Dinas }}"
