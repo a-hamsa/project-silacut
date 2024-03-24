@@ -1,11 +1,11 @@
 @extends('layout.app')
 
 @section('content')
-<div class="row m-0 p-0">
-    <div class="col-5 d-flex justify-content-center align-items-center" style="background: #3B71CB;">
-        <img src="assets/img/logomorowalilogin.png" alt="Logo" class="img-fluid">
+<div class="row m-0">
+    <div class="col-4 d-flex justify-content-center align-items-center" style="background: #3B71CB;">
+        <img src="assets/img/logomorowalilogin.png" alt="Logo" class="img-fluid w-100">
     </div>
-    <div class="col-7 px-5 py-5 justify-content-center align-items-center">
+    <div class="col-8 px-5 py-5 justify-content-center align-items-center">
         <div class="input-box">
             <img src="assets/img/silacutbaru.png" alt="Logo Silacut" class="w-100 mb-5">
             <form action="{{ route('login') }}" method="POST">

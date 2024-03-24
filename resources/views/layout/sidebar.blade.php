@@ -11,16 +11,13 @@
     </nav>
     <!-- Logout link outside the nav element -->
     <div class="justify-content-end mt-auto px-1">
-      <a href="{{ url('logout') }}" class="btn w-100 d-block text-black" style="background: gray;">
-        <div class="row align-items-center">
-          <div class="col-auto">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          </div>
-          <div class="col text-start">
-            <span>Logout</span>
-          </div>
-        </div>
-      </a>
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button class="btn btn-secondary w-100 text-start" type="submit">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          Logout
+        </button>
+      </form>
     </div>
   </div>
 </aside>

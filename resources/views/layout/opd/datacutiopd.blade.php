@@ -14,20 +14,69 @@
       </div>
       <div class="modal-body">
         <form>
-          <div class="row">
-            <div class="col-2">
-                <label for="recipient-name" class="col-form-label">Pilih Pegawai</label>
+            @csrf
+            <div class="row">
+                <div class="col-2">
+                    <label for="recipient-name" class="col-form-label">Pilih Pegawai</label>
+                </div>
+                <div class="col-10">
+                    <select class="form-control w-100" name="pegawai" id="pegawai" placeholder="-- Nama Pegawai --">
+                        @foreach ($tb_pegawai as $tbp)
+                            <option value="{{$tbp->Nama_Pegawai}}">{{$tbp->Nama_Pegawai}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-            <div class="col-10">
-                <select class="w-100" name="pegawai" id="pegawai" placeholder="-- Nama Pegawai --">
-                    @foreach ($tb_cuti as $tbc)
-                        <option value="">{{$tbc->pegawai->Nama_Pegawai}}</option>
-                    @endforeach
-                </select>
-                <!-- <input type="text" class="form-control" id="recipient-name"> -->
+            <hr style="height:3px;border:none;color:#000;background-color:#000;margin-bottom: 16px;">
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="Nama">Nama</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" class="form-control w-100" id="nama" name="Nama" disabled>
+                </div>
             </div>
-          </div>
-          <hr style="height:3px;border:none;color:#000;background-color:#000;">
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="NIP">NIP</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" class="form-control w-100" id="nip" name="NIP" disabled>
+                </div>
+            </div>
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="Jabatan">Jabatan</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" class="form-control w-100" id="jabatan" name="Jabatan" disabled>
+                </div>
+            </div>
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="Masa Kerja">Masa Kerja</label>
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control w-100" id="tahun" name="tahun" disabled>
+                </div>
+                <div class="col-2">
+                    <label for="Tahun" class="text-center">Tahun</label>
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control w-100" id="bulan" name="bulan" disabled>
+                </div>
+                <div class="col-2">
+                    <label for="" class="text-end">Bulan</label>
+                </div>
+            </div>
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="Unit Kerja">Unit Kerja</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" class="form-control w-100" id="unit_kerja" name="Unit Kerja" disabled>
+                </div>
+            </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -102,4 +151,47 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function(){
+
+    function updatePegawai() {
+        var pegawai = $('#pegawai').val();
+        $.ajax({
+            url: "{{ route('getpegawai') }}",
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                pegawai: pegawai,
+            },
+            success: function(response){
+                console.log(response)
+                let currentDate = new Date();
+                let masa_kerja = new Date(response.Tanggal_Mulai);
+                let tahun = currentDate.getFullYear() - masa_kerja.getFullYear();
+                let bulan = currentDate.getMonth() - masa_kerja.getMonth() + 1;
+                if (bulan < 0) {
+                    tahun = tahun - 1
+                    bulan = bulan + 12;
+                }
+                $('#nama').val(response.Nama_Pegawai);
+                $('#nip').val(response.NIP);
+                $('#jabatan').val(response.Id_Jabatan);
+                $('#tahun').val(tahun);
+                $('#bulan').val(bulan);
+                $('#unit_kerja').val(response.Id_Golongan);
+            },
+            error: function(xhr, status, error){
+                console.error('Terjadi kesalahan: ' + error);
+            }
+        });
+    }
+
+    $('#pegawai').on('change', function(){
+        updatePegawai()
+    });
+});
+</script>
 @endsection

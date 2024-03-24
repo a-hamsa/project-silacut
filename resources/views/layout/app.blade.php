@@ -18,17 +18,16 @@
         height: 100%;
         background-image: url("assets/img/background.jpg");
         background-size: cover;
-        filter: blur(5px); /* Adjust the blur amount as needed */
+        filter: blur(5px);
         z-index: -1;
     }
     </style>
 </head>
 <body>
-<div class="background"></div>
-    <div class="container">
-        <div class="row justify-content-center align-items-center vh-100">
-            <div class="col-md-11 p-0">
-                <div class="card rounded w-100">
+    <div class="background"></div>
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center vh-100">
+                <div class="card w-75 card-sm p-0">
                     @yield('content')
                 </div>
             </div>
