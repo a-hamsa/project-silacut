@@ -77,6 +77,31 @@
                     <input type="text" class="form-control w-100" id="unit_kerja" name="Unit Kerja" disabled>
                 </div>
             </div>
+            <hr style="height:3px;border:none;color:#000;background-color:#000;margin-bottom: 16px;">
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="">Insert PDF</label>
+                </div>
+                <div class="col-10">
+                    <input type="file" class="form-control" name="pdf">
+                </div>
+            </div>
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="">Insert PDF</label>
+                </div>
+                <div class="col-10">
+                    <input type="file" class="form-control" name="pdf">
+                </div>
+            </div>
+            <div class="row m-0 pb-4">
+                <div class="col-2">
+                    <label for="">Insert PDF</label>
+                </div>
+                <div class="col-10">
+                    <input type="file" class="form-control" name="pdf">
+                </div>
+            </div>
         </form>
       </div>
       <div class="modal-footer">
