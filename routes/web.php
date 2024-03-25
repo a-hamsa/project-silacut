@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function(){
     });
     Route::group(['middleware' => [CekUserLogin::class.':2']], function(){
         Route::get('dashboardopd', [Dashboard_Opd::class, 'index'])->name('dashboardopd');
-        //Route::get('datacutiopd', [Data_Cuti_Opd::class, 'index'])->name('datacutiopd');
+        Route::post('getpegawai', [Data_Cuti_Opd::class, 'getPegawai'])->name('getpegawai');
         Route::resource('datacutiopd', Data_Cuti_Opd::class);
         Route::get('kelolapegawaiopd', [Data_Pegawai_Opd::class, 'index'])->name('kelolapegawaiopd');
     });
@@ -53,3 +53,4 @@ Route::group(['middleware' => ['auth']], function(){
         // Route::resource('addpegawai', PegawaiController::class);
     });
 });
+
