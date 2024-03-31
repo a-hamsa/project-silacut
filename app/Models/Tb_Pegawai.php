@@ -10,6 +10,7 @@ class Tb_Pegawai extends Model
     use HasFactory;
     protected $table='tb_pegawai';
     protected $primaryKey='NIP';
+    protected $keyType = 'string';
 
     protected $guarded = [];
 

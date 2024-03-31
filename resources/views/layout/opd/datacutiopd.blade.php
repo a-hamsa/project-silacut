@@ -13,7 +13,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="myForm">
             @csrf
             <div class="row">
                 <div class="col-2">
@@ -75,6 +75,11 @@
                 </div>
                 <div class="col-10">
                     <input type="text" class="form-control w-100" id="unit_kerja" name="Unit Kerja" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <button id="printCuti" class="btn" style="background-color: #FB6340; color: white;"><i class="fa-solid fa-print"></i> Print File Permohonan Cuti</button>
                 </div>
             </div>
             <hr style="height:3px;border:none;color:#000;background-color:#000;margin-bottom: 16px;">
@@ -202,7 +207,7 @@ $(document).ready(function(){
                     bulan = bulan + 12;
                 }
                 $('#nama').val(response.Nama_Pegawai);
-                $('#nip').val(response.NIP);
+                $('#nip').val(response.NIP.toString());
                 $('#jabatan').val(response.Id_Jabatan);
                 $('#tahun').val(tahun);
                 $('#bulan').val(bulan);
@@ -217,6 +222,15 @@ $(document).ready(function(){
     $('#pegawai').on('change', function(){
         updatePegawai()
     });
+
+    $("#myForm").submit(function(event) {
+        event.preventDefault();
+        let nip = $('#nip').val();
+        if (nip != null) {
+            window.open("/fileCutiOPD?nip=" + nip, '_blank');
+        }
+    });
+
 });
 </script>
 @endsection

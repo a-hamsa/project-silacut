@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('kelolapegawaibkd/store', [BkdData_Pegawai::class, 'store'])->name('kelolapegawaibkd.store');
         Route::delete('kelolapegawaibkd/{id}', [BkdData_Pegawai::class, 'destroy']);
         Route::resource('kelolaopd', Kelola_OPD::class);
+        Route::get('/fileCutiOPD', [Kelola_OPD::class, 'generatePdf'])->name('generatePdfOPD');
         Route::get('kelolaopd/create', [Kelola_OPD::class,'create']);
         Route::put('kelolaopd/{id}', [Kelola_OPD::class,'update']);
         Route::get('kelolaopd/{id}/edit', [Kelola_OPD::class,'edit']);
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('rekapancuti', [Rekapan_Cuti::class, 'index'])->name('rekapancuti');
     });
     Route::group(['middleware' => [CekUserLogin::class.':2']], function(){
+        Route::get('/fileCutiOPD', [Kelola_OPD::class, 'generatePdf'])->name('generatePdfOPD');
         Route::get('dashboardopd', [Dashboard_Opd::class, 'index'])->name('dashboardopd');
         Route::post('getpegawai', [Data_Cuti_Opd::class, 'getPegawai'])->name('getpegawai');
         Route::resource('datacutiopd', Data_Cuti_Opd::class);
