@@ -21,8 +21,9 @@
                 </div>
                 <div class="col-10">
                     <select class="form-control w-100" name="pegawai" id="pegawai" placeholder="-- Nama Pegawai --">
-                        @foreach ($tb_pegawai as $tbp)
-                            <option value="{{$tbp->Nama_Pegawai}}">{{$tbp->Nama_Pegawai}}</option>
+                            <option value="" selected>-- Pilih Pegawai --</option>
+                        @foreach ($tb_cuti as $tbp)
+                            <option value="{{$tbp->pegawai->Nama_Pegawai}}">{{$tbp->pegawai->Nama_Pegawai}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -157,16 +158,16 @@
                                         data-bs-target="#viewperiksa{{ $tbc->Id_Data_Cuti }}"><i class="far fa-eye"></i></button>
 
                                     <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                                    <a href="kelolapegawaibkd/{{ $pgw->Id_Data_Cuti }}/edit"
+                                    <a href="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}/edit"
                                         class="btn btn-outline-warning btn-sm"
                                         style="margin-right: 5px; border-radius:5px;">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <form action="kelolapegawaibkd/{{ $pgw->Id_Data_Cuti }}" method="POST" id="deleteFormKelolaPegawaiBkd">
+                                    <form action="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}" method="POST" id="deleteFormKelolaPegawaiBkd">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-secondary btn-sm delete"
-                                                data-nip="{{ $pgw->NIP }}" data-nama="{{ $pgw->Nama_Pegawai }}"
+                                                data-nip="{{ $tbc->NIP }}" data-nama="{{ $tbc->pegawai->Nama_Pegawai }}"
                                                 style="border-radius:5px;">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
@@ -184,7 +185,6 @@
 
 <script>
 $(document).ready(function(){
-
     function updatePegawai() {
         var pegawai = $('#pegawai').val();
         $.ajax({
