@@ -138,7 +138,6 @@
                         <th>Jenis Cuti</th>
                         <th>Tanggal Cuti</th>
                         <th>Diajukan</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
 

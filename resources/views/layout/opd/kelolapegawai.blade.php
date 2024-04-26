@@ -5,11 +5,19 @@
 @endsection
 
 @section('content')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <a href="{{ route('kelolapegawai.create') }}" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah
-            Pegawai</span></a>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<div class="p-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('createpegawaiopd') }}" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah Pegawai</span></a>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md">
             <h1 class="card-title"></h1>
@@ -20,7 +28,7 @@
                         <th>NIP</th>
                         <th>Nama</th>
                         <th>Satuan Kerja</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
 
@@ -31,7 +39,6 @@
                             <td>{{ $pgw->NIP }}</td>
                             <td>{{ $pgw->Nama_Pegawai }}</td>
                             <td>{{ $pgw->dinas->Dinas }}</td>
-                            <td></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-outline-info btn-sm"
@@ -39,14 +46,14 @@
                                         data-bs-target="viewperiksa{{ $pgw->id }}"><i class="far fa-eye"></i></button>
 
                                     <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                                    <a href="{{ route('kelolapegawai.edit', ['id' => $pgw->NIP]) }}"
+                                    <a href="{{ route('editapegawaiopd', ['id' => $pgw->NIP]) }}"
                                         class="btn btn-outline-warning btn-sm"
                                         style="margin-right: 5px; border-radius:5px;">
                                         <i class="far fa-edit"></i>
                                     </a>
 
 
-                                    <form action="{{ route('kelolapegawai.destroy', ['id' => $pgw->NIP]) }}" method="POST">
+                                    <form action="{{ route('deletepegawaiopd', ['id' => $pgw->NIP]) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" value="Delete" class="btn btn-outline-secondary btn-sm"
@@ -61,6 +68,7 @@
             <h1 class="card-title"></h1>
         </div>
     </div>
+</div>
 
 
     @foreach ($tb_pegawai as $pgw)

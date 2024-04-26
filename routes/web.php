@@ -50,6 +50,11 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('getpegawai', [Data_Cuti_Opd::class, 'getPegawai'])->name('getpegawai');
         Route::resource('datacutiopd', Data_Cuti_Opd::class);
         Route::get('kelolapegawaiopd', [Data_Pegawai_Opd::class, 'index'])->name('kelolapegawaiopd');
+        Route::get('createpegawaiopd', [Data_Pegawai_Opd::class, 'create'])->name('createpegawaiopd');
+        Route::post('storepegawaiopd', [Data_Pegawai_Opd::class, 'store'])->name('storepegawaiopd');
+        Route::get('editapegawaiopd', [Data_Pegawai_Opd::class, 'edit'])->name('editapegawaiopd');
+        Route::put('updatepegawaiopd/{id}', [Data_Pegawai_Opd::class, 'update'])->name('updatepegawaiopd');
+        Route::get('deletepegawaiopd', [Data_Pegawai_Opd::class, 'destroy'])->name('deletepegawaiopd');
     });
     Route::group(['middleware' => [CekUserLogin::class.':3']], function(){
         // Route::resource('addpegawai', PegawaiController::class);
