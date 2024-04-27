@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<div class="p-4">
     <section class="section">
         <div class="row">
             <div class="col-lg-8">
@@ -79,6 +80,7 @@
             </div>
         </div>
     </section>
+</div>
 
     <script>
         document.getElementById('togglePassword').addEventListener('click', function() {

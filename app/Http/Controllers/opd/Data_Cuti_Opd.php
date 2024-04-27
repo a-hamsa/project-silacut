@@ -18,6 +18,7 @@ class Data_Cuti_Opd extends Controller
         $tb_pegawai = Tb_Pegawai::all();
         return view('layout.opd.datacutiopd', compact(['user','tb_cuti', 'tb_pegawai']));
     }
+
     public function getPegawai(Request $request){
         $pegawai = $request->input("pegawai");
         $tb_pegawai = Tb_Pegawai::where("Nama_Pegawai", $pegawai)->first();
@@ -27,5 +28,6 @@ class Data_Cuti_Opd extends Controller
         $tb_pegawai->Id_Jabatan = $jabatan->Jabatan;
         $tb_pegawai->Id_Golongan = $golongan->Golongan;
         return response()->json($tb_pegawai);
-    }    
+    }
+    
 }

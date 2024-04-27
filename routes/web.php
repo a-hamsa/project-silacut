@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 Route::get('/', [LayoutController::class, 'index'])->middleware('auth');
 
+
 Route::group(['middleware' => ['auth']], function(){
+    Route::post('/get_cuti', [Rekapan_Cuti::class, 'getCuti'])->name('get_cuti');
     Route::group(['middleware' => [CekUserLogin::class.':1']], function(){
         Route::get('dashboardbkd', [Dashboard_Bkd::class, 'index'])->name('dashboardbkd');
         Route::resource('kelolapegawaibkd', BkdData_Pegawai::class);

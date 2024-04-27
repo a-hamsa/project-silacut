@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-white-primary elevation-4 d-flex flex-column h-100 pb-4">
   <a href="./" class="brand-link text-decoration-none">
-    <img src="assets/img/silacut.png" alt="Logo" class="img-fluid">
+    <img src="{{asset('assets/img/silacut.png')}}" alt="Logo" class="img-fluid">
   </a>
   <div class="sidebar text-white d-flex flex-column h-100">
     <nav class="mt-3">
