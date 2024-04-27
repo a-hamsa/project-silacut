@@ -5,51 +5,59 @@ Data Pengguna Kelola Pengguna
 @endsection
 
 @section('content')
-<a href="kelolapengguna/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span>    Tambah Pengguna</span></a>
-<div class="row">
-    <div class="col-md">
-        <h1 class="card-title"></h1>
-    <table id="" class="table table-striped" style="width:100%; ">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Username</th>
-                <th>Satuan Kerja</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-    
-        <tbody>
-        @foreach($tb_user as $tbu)
-            <tr>
-                <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{ $tbu->username }}</td>
-                <td>{{ $tbu->dinas->Dinas }}</td>
-               <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewpengguna{{ $tbu->id }}"><i class="far fa-eye"></i></button>
-            
-                    <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                    <a href="kelolapengguna/{{ $tbu->id }}/edit"" class="btn btn-outline-warning btn-sm" style="margin-right: 5px; border-radius:5px;"><i class="far fa-edit"></i></a>
-            
-                    {{-- <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteForm">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" value="Delete" class="btn btn-outline-secondary btn-sm" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
-                    </form> --}}
-                    <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteFormKelolaPengguna">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-outline-secondary btn-sm delete-btn" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
-                    </form>
-                    
-                </div>
-            </td>
-            </tr>
-        @endforeach
-        </tbody>
-        </table>
-        <h1 class="card-title"></h1>
+<div class="p-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-end">
+                <a href="kelolapengguna/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span>Tambah Pengguna</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <h1 class="card-title"></h1>
+        <table id="" class="table table-striped" style="width:100%; ">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Username</th>
+                    <th>Satuan Kerja</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+            @foreach($tb_user as $tbu)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $tbu->username }}</td>
+                    <td>{{ $tbu->dinas->Dinas }}</td>
+                   <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewpengguna{{ $tbu->id }}"><i class="far fa-eye"></i></button>
+                
+                        <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
+                        <a href="kelolapengguna/{{ $tbu->id }}/edit"" class="btn btn-outline-warning btn-sm" style="margin-right: 5px; border-radius:5px;"><i class="far fa-edit"></i></a>
+                
+                        {{-- <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteForm">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" value="Delete" class="btn btn-outline-secondary btn-sm" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
+                        </form> --}}
+                        <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteFormKelolaPengguna">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-outline-secondary btn-sm delete-btn" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
+                        </form>
+                        
+                    </div>
+                </td>
+                </tr>
+            @endforeach
+            </tbody>
+            </table>
+            <h1 class="card-title"></h1>
+        </div>
     </div>
 </div>
 

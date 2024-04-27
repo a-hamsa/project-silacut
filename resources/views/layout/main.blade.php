@@ -12,6 +12,9 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
+    <script src="../adminLTE/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Boostrap 5 Datatable -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
@@ -24,16 +27,16 @@
     <!-- Favicons -->
     <link href="{{ asset('assets/img/logomorowali.png') }}" rel="icon">
     <link href="{{ asset('assets/img/logomorowali.png') }}" rel="apple-touch-icon">
-    <link rel="stylesheet" href="adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link rel="stylesheet" href="adminLTE/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <link rel="stylesheet" href="adminLTE/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/adminLTE/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/adminLTE/dist/css/adminlte.min.css') }}">
     
     <!-- Template Main CSS File -->
     <link rel="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
@@ -45,6 +48,13 @@
 
     <!-- SweetAlert -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+
+
+    
+    <!-- Data Table -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.5/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/sc-2.4.1/sb-1.7.1/datatables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css" rel="stylesheet">
 
 </head>
 
@@ -65,16 +75,15 @@
 
     <!-- AdminLTE -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="adminLTE/plugins/jquery/jquery.min.js"></script>
-    <script src="adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="adminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="adminLTE/dist/js/adminlte.js"></script>
-    <script src="adminLTE/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="adminLTE/plugins/raphael/raphael.min.js"></script>
-    <script src="adminLTE/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="adminLTE/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-    <script src="adminLTE/plugins/chart.js/Chart.min.js"></script>
-    <script src="adminLTE/dist/js/demo.js"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/dist/js/adminlte.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/raphael/raphael.min.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ asset('assets/adminLTE/dist/js/demo.js')}}"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -85,6 +94,12 @@
     <!-- Toastr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.5/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/sc-2.4.1/sb-1.7.1/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
 
     <script>
         $(function() {

@@ -5,23 +5,7 @@
 @endsection
 
 @section('content')
-    {{-- <section class="section">
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="alert alert-warning  alert-dismissible fade show" role="alert">
-                    <h4 class="alert-heading">Perhatian!!</h4>
-                    <p>1. Mohon pastikan bahwa seluruh data telah diisi dengan lengkap sebelum disimpan. Hal ini penting
-                        untuk memastikan kelengkapan informasi</p>
-                    <hr>
-                    <p class="mb-0">Terima kasih atas perhatiannya dalam pengisian data <i
-                            class="fa-solid fa-face-smile"></i></p>
-
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
+<div class="p-4">
     <section class="section">
         <div class="row">
             <div class="col-lg-8">
@@ -29,8 +13,6 @@
                     <div class="card-body">
                         <h5 class="card-title">Form Tambah Data Pegawai</h5>
                         <form action="{{ route('kelolapegawaibkd.store') }}" method="POST">
-                        {{-- <form action="/kelolapegawaibkd" method="POST"> --}}
-                        {{-- <form method="POST" action="{{ route('kelolapegawaibkd.store') }}"> --}}
                             @csrf
                             <div class="col-md-12" style="margin-bottom:15px;">
                                 <label for="txtid" class="form-label">NIP</label>
@@ -226,6 +208,7 @@
             </div>
         </div>
     </section>
+</div>
     <script>
         document.getElementById('txtid').addEventListener('input', function(event) {
             // Menghapus karakter selain angka

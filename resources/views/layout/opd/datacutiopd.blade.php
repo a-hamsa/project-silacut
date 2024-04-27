@@ -13,7 +13,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="myForm">
             @csrf
             <div class="row">
                 <div class="col-2">
@@ -21,8 +21,9 @@
                 </div>
                 <div class="col-10">
                     <select class="form-control w-100" name="pegawai" id="pegawai" placeholder="-- Nama Pegawai --">
-                        @foreach ($tb_pegawai as $tbp)
-                            <option value="{{$tbp->Nama_Pegawai}}">{{$tbp->Nama_Pegawai}}</option>
+                            <option value="" selected>-- Pilih Pegawai --</option>
+                        @foreach ($tb_cuti as $tbp)
+                            <option value="{{$tbp->pegawai->Nama_Pegawai}}">{{$tbp->pegawai->Nama_Pegawai}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -75,6 +76,11 @@
                 </div>
                 <div class="col-10">
                     <input type="text" class="form-control w-100" id="unit_kerja" name="Unit Kerja" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <button id="printCuti" class="btn" style="background-color: #FB6340; color: white;"><i class="fa-solid fa-print"></i> Print File Permohonan Cuti</button>
                 </div>
             </div>
             <hr style="height:3px;border:none;color:#000;background-color:#000;margin-bottom: 16px;">
@@ -132,7 +138,6 @@
                         <th>Jenis Cuti</th>
                         <th>Tanggal Cuti</th>
                         <th>Diajukan</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
 
@@ -152,16 +157,16 @@
                                         data-bs-target="#viewperiksa{{ $tbc->Id_Data_Cuti }}"><i class="far fa-eye"></i></button>
 
                                     <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                                    <a href="kelolapegawaibkd/{{ $pgw->Id_Data_Cuti }}/edit"
+                                    <a href="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}/edit"
                                         class="btn btn-outline-warning btn-sm"
                                         style="margin-right: 5px; border-radius:5px;">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <form action="kelolapegawaibkd/{{ $pgw->Id_Data_Cuti }}" method="POST" id="deleteFormKelolaPegawaiBkd">
+                                    <form action="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}" method="POST" id="deleteFormKelolaPegawaiBkd">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-secondary btn-sm delete"
-                                                data-nip="{{ $pgw->NIP }}" data-nama="{{ $pgw->Nama_Pegawai }}"
+                                                data-nip="{{ $tbc->NIP }}" data-nama="{{ $tbc->pegawai->Nama_Pegawai }}"
                                                 style="border-radius:5px;">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
@@ -179,7 +184,6 @@
 
 <script>
 $(document).ready(function(){
-
     function updatePegawai() {
         var pegawai = $('#pegawai').val();
         $.ajax({
@@ -202,7 +206,7 @@ $(document).ready(function(){
                     bulan = bulan + 12;
                 }
                 $('#nama').val(response.Nama_Pegawai);
-                $('#nip').val(response.NIP);
+                $('#nip').val(response.NIP.toString());
                 $('#jabatan').val(response.Id_Jabatan);
                 $('#tahun').val(tahun);
                 $('#bulan').val(bulan);
@@ -217,6 +221,15 @@ $(document).ready(function(){
     $('#pegawai').on('change', function(){
         updatePegawai()
     });
+
+    $("#myForm").submit(function(event) {
+        event.preventDefault();
+        let nip = $('#nip').val();
+        if (nip != null) {
+            window.open("/fileCutiOPD?nip=" + nip, '_blank');
+        }
+    });
+
 });
 </script>
 @endsection

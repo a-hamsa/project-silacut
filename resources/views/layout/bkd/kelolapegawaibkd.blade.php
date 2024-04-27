@@ -5,11 +5,15 @@
 @endsection
 
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
-        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <a href="kelolapegawaibkd/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah
-            Pegawai</span></a>
+<div class="p-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-end">
+                <a href="kelolapegawaibkd/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah Pegawai</span></a>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md">
             <h1 class="card-title"></h1>
@@ -71,6 +75,7 @@
             <h1 class="card-title"></h1>
         </div>
     </div>
+</div>
 
     {{-- <script>
         $('.delete').click(function() {

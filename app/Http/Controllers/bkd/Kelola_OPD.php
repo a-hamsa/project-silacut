@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\bkd;
 
+use PDF;
 use App\Http\Controllers\Controller;
 use App\Models\Tb_Dinas;
 use Illuminate\Http\Request;
+use App\Models\Tb_Golongan;
+use App\Models\Tb_Jabatan;
+use App\Models\Tb_Jenis_Kelamin;
+use App\Models\Tb_Pegawai;
 
 class Kelola_OPD extends Controller
 {
@@ -65,4 +70,14 @@ class Kelola_OPD extends Controller
         return redirect('kelolaopd')->with('success', 'Data berhasil dihapus');
     }
     
+    public function generatePdf(Request $request)
+    {
+        $nip = $request->input('nip');
+        $tb_pegawai = Tb_Pegawai::where("NIP", $nip)->first();
+        $jabatan = Tb_Jabatan::select("Jabatan")->where("id_Jabatan", $tb_pegawai->Id_Jabatan)->first();
+        $golongan = Tb_Golongan::select("Golongan")->where("id_Golongan", $tb_pegawai->Id_Golongan)->first();
+        $tb_pegawai->Id_Jabatan = $jabatan->Jabatan;
+        $tb_pegawai->Id_Golongan = $golongan->Golongan;
+        return view('layout.opd.file_cuti', compact('tb_pegawai'));
+    }
 }

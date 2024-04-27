@@ -5,30 +5,16 @@
 @endsection
 
 @section('content')
-    {{-- <section class="section">
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="alert alert-warning  alert-dismissible fade show" role="alert">
-                    <h4 class="alert-heading">Perhatian!!</h4>
-                    <p>1. Mohon pastikan bahwa seluruh data telah diisi dengan lengkap sebelum disimpan. Hal ini penting
-                        untuk memastikan kelengkapan informasi</p>
-                    <hr>
-                    <p class="mb-0">Terima kasih atas perhatiannya dalam pengisian data <i
-                            class="fa-solid fa-face-smile"></i></p>
-
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
+<div class="p-4">
     <section class="section">
         <div class="row">
             <div class="col-lg-8">
                 <div class="card">
+                    <div class="card-title pt-3">
+                        <h5 class="text-center">Form Edit Data Pegawai</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Form Edit Data Pegawai</h5>
-                        <form method="POST" action="{{ route('kelolapegawai.update', ['id' => $tb_pegawai->NIP]) }}">
+                        <form method="POST" action="{{ route('updatepegawaiopd', ['id' => $tb_pegawai->NIP]) }}">
                             @csrf
                             @method('PUT')
                             <div class="col-md-12" style=" margin-bottom:15px;">
@@ -227,4 +213,5 @@
             </div>
         </div>
     </section>
+</div>
 @endsection

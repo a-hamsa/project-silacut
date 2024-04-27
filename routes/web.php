@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 Route::get('/', [LayoutController::class, 'index'])->middleware('auth');
 
+
 Route::group(['middleware' => ['auth']], function(){
+    Route::post('/get_cuti', [Rekapan_Cuti::class, 'getCuti'])->name('get_cuti');
     Route::group(['middleware' => [CekUserLogin::class.':1']], function(){
         Route::get('dashboardbkd', [Dashboard_Bkd::class, 'index'])->name('dashboardbkd');
         Route::resource('kelolapegawaibkd', BkdData_Pegawai::class);
@@ -29,6 +31,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('kelolapegawaibkd/store', [BkdData_Pegawai::class, 'store'])->name('kelolapegawaibkd.store');
         Route::delete('kelolapegawaibkd/{id}', [BkdData_Pegawai::class, 'destroy']);
         Route::resource('kelolaopd', Kelola_OPD::class);
+        Route::get('/fileCutiOPD', [Kelola_OPD::class, 'generatePdf'])->name('generatePdfOPD');
         Route::get('kelolaopd/create', [Kelola_OPD::class,'create']);
         Route::put('kelolaopd/{id}', [Kelola_OPD::class,'update']);
         Route::get('kelolaopd/{id}/edit', [Kelola_OPD::class,'edit']);
@@ -44,10 +47,16 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('rekapancuti', [Rekapan_Cuti::class, 'index'])->name('rekapancuti');
     });
     Route::group(['middleware' => [CekUserLogin::class.':2']], function(){
+        Route::get('/fileCutiOPD', [Kelola_OPD::class, 'generatePdf'])->name('generatePdfOPD');
         Route::get('dashboardopd', [Dashboard_Opd::class, 'index'])->name('dashboardopd');
         Route::post('getpegawai', [Data_Cuti_Opd::class, 'getPegawai'])->name('getpegawai');
         Route::resource('datacutiopd', Data_Cuti_Opd::class);
         Route::get('kelolapegawaiopd', [Data_Pegawai_Opd::class, 'index'])->name('kelolapegawaiopd');
+        Route::get('createpegawaiopd', [Data_Pegawai_Opd::class, 'create'])->name('createpegawaiopd');
+        Route::post('storepegawaiopd', [Data_Pegawai_Opd::class, 'store'])->name('storepegawaiopd');
+        Route::get('editapegawaiopd', [Data_Pegawai_Opd::class, 'edit'])->name('editapegawaiopd');
+        Route::put('updatepegawaiopd/{id}', [Data_Pegawai_Opd::class, 'update'])->name('updatepegawaiopd');
+        Route::get('deletepegawaiopd', [Data_Pegawai_Opd::class, 'destroy'])->name('deletepegawaiopd');
     });
     Route::group(['middleware' => [CekUserLogin::class.':3']], function(){
         // Route::resource('addpegawai', PegawaiController::class);
