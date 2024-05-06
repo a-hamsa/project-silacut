@@ -7,6 +7,7 @@ use App\Models\Tb_Dinas;
 use App\Models\Tb_Golongan;
 use App\Models\Tb_Jabatan;
 use App\Models\Tb_Jenis_Kelamin;
+use App\Models\Tb_Jenis_Cuti;
 use App\Models\Tb_Pegawai;
 use App\Models\Tb_User;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class Data_Pegawai_Opd extends Controller
     public function index()
     {
         $user = auth()->user();
-        $tb_pegawai = Tb_Pegawai::all();
+        $tb_pegawai = Tb_Pegawai::where('Id_Dinas', $user->Id_Dinas)->get();
         return view('layout.opd.kelolapegawai', compact(['user','tb_pegawai']));
     }
 
@@ -25,7 +26,7 @@ class Data_Pegawai_Opd extends Controller
     {
         $user = auth()->user();
         $tb_pegawai = Tb_Pegawai::all();
-        $tb_dinas = Tb_Dinas::all();
+        $tb_dinas = Tb_Dinas::where('Id_Dinas', $user->Id_Dinas)->get();
         $tb_golongan = Tb_Golongan::all();
         $tb_jenis_kelamin = Tb_Jenis_Kelamin::all();
         $tb_jabatan = Tb_Jabatan::all();       
