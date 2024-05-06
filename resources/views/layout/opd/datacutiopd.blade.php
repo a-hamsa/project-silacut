@@ -8,7 +8,7 @@
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form id="myForm">
+        <form id="myForm" action="{{ route('storeCuti') }}" method="POST">
             @csrf
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="formModalLabel">Detail Cuti</h1>
@@ -96,7 +96,7 @@
                         <select class="form-control w-100" name="jenis_cuti" id="jenisCuti" placeholder="-- Jenis Cuti --">
                                 <option value="" disabled selected>-- Jenis Cuti --</option>
                             @foreach ($tb_jenis_cuti as $tjc)
-                                <option value="{{$tjc->Nama_Jenis_Cuti}}">{{$tjc->Nama_Jenis_Cuti}}</option>
+                                <option value="{{$tjc->Id_Jenis_Cuti}}">{{$tjc->Nama_Jenis_Cuti}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -197,7 +197,7 @@
                         <label for="SKTerakhir">Scan SK Terakhir</label>
                     </div>
                     <div class="col-9">
-                        <input type="file" class="form-control" name="SKTerakhir">
+                        <input type="file" accept="application/pdf" class="form-control" name="SKTerakhir">
                     </div>
                 </div>
                 <div class="row m-0 pb-4">
@@ -205,7 +205,7 @@
                         <label for="Absen">Scan Rekap Absen</label>
                     </div>
                     <div class="col-9">
-                        <input type="file" class="form-control" name="Absen">
+                        <input type="file" accept="application/pdf" class="form-control" name="Absen">
                     </div>
                 </div>
                 <div class="row m-0 pb-4">
@@ -213,19 +213,22 @@
                         <label for="scan_cuti">Scan Permohonan Cuti</label>
                     </div>
                     <div class="col-9">
-                        <input type="file" class="form-control" name="scan_cuti">
+                        <input type="file" accept="application/pdf" class="form-control" name="scan_cuti">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="submit" id="submitCuti" class="btn btn-primary">Submit Cuti</button>
             </div>
         </form>
     </div>
   </div>
 </div>
-
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="p-4">
     <div class="card">
         <div class="card-body">
@@ -331,14 +334,18 @@ $(document).ready(function(){
         updatePegawai()
     });
 
-    $("#myForm").submit(function(event) {
+    $("#submitCuti").click(function(event) {
         event.preventDefault();
-        // let nip = $('#nip').val();
-        let formData = $(this).serialize();
-        if (nip != null) {
-            window.open("/fileCutiOPD?" + formData, '_blank');
-        }
+        console.log($("#myForm").submit());
+        $("#myForm").submit();
     });
+
+    $("#printCuti").click(function(event) {
+        event.preventDefault();
+        let formData = $("#myForm").serialize();
+        window.open("/fileCutiOPD?" + formData, '_blank');
+    });
+
 
 });
 </script>

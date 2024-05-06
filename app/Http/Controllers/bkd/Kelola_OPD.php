@@ -10,6 +10,7 @@ use App\Models\Tb_Golongan;
 use App\Models\Tb_Cuti;
 use App\Models\Tb_Jabatan;
 use App\Models\Tb_Jenis_Kelamin;
+use App\Models\Tb_Jenis_Cuti;
 use App\Models\Tb_Pegawai;
 
 class Kelola_OPD extends Controller
@@ -77,7 +78,7 @@ class Kelola_OPD extends Controller
         $tb_pegawai = Tb_Pegawai::where("NIP", $nip)->first();
         $sisa_cuti = Tb_Cuti::where("NIP", $nip)->count();
 
-        $jenis_cuti = $request->input('jenis_cuti');
+        $jenis_cuti = Tb_Jenis_Cuti::select('Nama_Jenis_Cuti')->where('Id_Jenis_Cuti', $request->input('jenis_cuti'))->first();
         $alasan_cuti = $request->input('alasan_cuti');
         $dari = $request->input('dari');
         $sampai = $request->input('sampai');

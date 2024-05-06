@@ -41,5 +41,41 @@ class Data_Cuti_Opd extends Controller
         $tb_pegawai->Id_Dinas = $dinas->Dinas;
         return response()->json($tb_pegawai);
     }
-    
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'pegawai' => 'required',
+            'jenis_cuti' => 'required',
+            'dari' => 'required|date',
+            'sampai' => 'required|date',
+            'alasan_cuti' => 'required',
+            'alamat_cuti' => 'required',
+        ]);
+
+        // Handle file uploads
+        // $skTerakhirPath = $request->file('SKTerakhir')->store('sk_terakhir', 'public');
+        // $absenPath = $request->file('Absen')->store('absen', 'public');
+        // $scanCutiPath = $request->file('scan_cuti')->store('scan_cuti', 'public');
+
+        // Create a new Tb_Cuti instance
+        $tbCuti = new Tb_Cuti;
+        $tbCuti->NIP = $validatedData['pegawai'];
+        $tbCuti->Id_Jenis_Cuti = $validatedData['jenis_cuti'];
+        $tbCuti->Tanggal_Mulai_Cuti = $validatedData['dari'];
+        $tbCuti->Tanggal_Berakhir_Cuti = $validatedData['sampai'];
+        $tbCuti->Tanggal_Pengajuan = now()->format('Y-m-d');
+        $tbCuti->Alasan_Cuti = $validatedData['alasan_cuti'];
+        $tbCuti->Alamat_Cuti = $validatedData['alamat_cuti'];
+        // Set file paths
+        // $tbCuti->sk_terakhir_path = $skTerakhirPath;
+        // $tbCuti->absen_path = $absenPath;
+        // $tbCuti->scan_cuti_path = $scanCutiPath;
+        
+        // Save the Tb_Cuti instance
+        $tbCuti->save();
+
+        // Redirect back or to a different page after storing the data
+        return redirect()->route('storeCuti')->with('success', 'Data has been stored successfully.');
+    }
 }

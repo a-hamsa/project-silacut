@@ -119,7 +119,8 @@
                                 <label class="form-label">Dinas</label>
                                 <div class="input-group">
                                     <select class="form-select @error('txtdepartment') is-invalid @enderror" aria-label="Default select example" name="txtdepartment">
-                                        <option selected>Pilih Dinas</option>
+                                        <!-- <option selected>Pilih Dinas</option> -->
+                                        <option value="{{$user->dinas->Id_Dinas}}" selected>{{$user->dinas->Dinas}}</option>
                                         @foreach ($tb_dinas as $tbd)
                                             <option value="{{ $tbd->Id_Dinas }}"
                                                 {{ old('txtdepartment') == $tbd->Id_Dinas ? 'selected' : '' }}>
