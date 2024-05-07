@@ -24,8 +24,7 @@
                 <div>Kepala Badan Kepagawaian</div>
                 <div>Pengembangan Dan Sumber Daya</div>
                 <div>Manusia Daerah Kab. Morowali</div>
-                <div>Di</div>
-                <div>Tempat</div>
+                <div>Di, Tempat</div>
             </div>
         </div>
         <br>
@@ -45,7 +44,7 @@
                 </tr>
                 <tr>
                     <td>Jabatan</td>
-                    <td colspan="4">{{$tb_pegawai->Id_Jabatan}}</td>
+                    <td colspan="4">{{$tb_pegawai->jabatan->Jabatan}}</td>
                 </tr>
                 <tr>
                     <td>Masa Kerja</td>
@@ -57,7 +56,7 @@
                 </tr>
                 <tr>
                     <td>Unit Kerja</td>
-                    <td colspan="4">{{$tb_pegawai->Id_Golongan}}</td>
+                    <td colspan="4">{{$tb_pegawai->dinas->Dinas}}</td>
                 </tr>
                 <tr>
                     <td style="color: transparent" colspan="5">I. DATA PEGAWAI</td>
@@ -66,7 +65,7 @@
                     <td class="fw-bold" colspan="5">II. JENIS CUTI YANG DIAMBIL</td>
                 </tr>
                 <tr>
-                    <td colspan="5">[Jenis Cuti]</td>
+                    <td colspan="5">{{$jenis_cuti}}</td>
                 </tr>
                 <tr>
                     <td style="color: transparent" colspan="5">I. DATA PEGAWAI</td>
@@ -75,7 +74,7 @@
                     <td class="fw-bold" colspan="5">III. ALASAN CUTI</td>
                 </tr>
                 <tr>
-                    <td colspan="5">[Alasan Cuti]</td>
+                    <td colspan="5">{{$alasan_cuti}}</td>
                 </tr>
                 <tr>
                     <td style="color: transparent" colspan="5">I. DATA PEGAWAI</td>
@@ -85,10 +84,10 @@
                 </tr>
                 <tr>
                     <td>Selama</td>
-                    <td>[x]</td>
+                    <td>{{$jumlah_hari}}</td>
                     <td>Hari</td>
                     <td>Mulai Tanggal</td>
-                    <td>[Tanggal]</td>
+                    <td>{{$dari}}</td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="5">V. CATATAN CUTI</td>
@@ -96,43 +95,43 @@
                 <tr>
                     <td colspan="3">1. Cuti Tahunan</td>
                     <td>2. Cuti Besar</td>
-                    <td></td>
+                    <td>{{$cuti_besar}}</td>
                 </tr>
                 <tr>
                     <td>Tahun</td>
                     <td>Sisa</td>
                     <td>Keterangan</td>
-                    <td>3. Rumah Sakit</td>
-                    <td></td>
+                    <td>3. Cuti Sakit</td>
+                    <td>{{$cuti_sakit}}</td>
                 </tr>
                 <tr>
                     <td>N-2</td>
                     <td></td>
                     <td></td>
                     <td>4. Cuti Melahirkan</td>
-                    <td></td>
+                    <td>{{$cuti_melahirkan}}</td>
                 </tr>
                 <tr>
                     <td>N-1</td>
                     <td></td>
                     <td></td>
                     <td>5. Cuti Karena Alasan Penting</td>
-                    <td></td>
+                    <td>{{$cuti_alasan_penting}}</td>
                 </tr>
                 <tr>
                     <td>N</td>
-                    <td>[INT]</td>
+                    <td>{{12 - $sisa_cuti}}</td>
                     <td></td>
                     <td>6. Cuti Di Luar Tanggungan Negara</td>
-                    <td></td>
+                    <td>{{$cuti_luar_negara}}</td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="5">VI. ALAMAT SELAMA MENJALANKAN CUTI</td>
                 </tr>
                 <tr>
-                    <td colspan="3">Jalan Contoh 1</td>
+                    <td colspan="3">{{$alamat_cuti}}</td>
                     <td>Telepon</td>
-                    <td>[No Telp]</td>
+                    <td>{{$no_telp}}</td>
                 </tr>
                 <tr>
                     <td colspan="3"></td>
@@ -162,5 +161,12 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // Function to execute when the window loads
+        window.onload = function() {
+            // Print the page
+            window.print();
+        };
+    </script>
 </body>
 </html>

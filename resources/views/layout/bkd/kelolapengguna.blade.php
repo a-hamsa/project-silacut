@@ -33,9 +33,7 @@ Data Pengguna Kelola Pengguna
                     <td>{{ $tbu->username }}</td>
                     <td>{{ $tbu->dinas->Dinas }}</td>
                    <td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewpengguna{{ $tbu->id }}"><i class="far fa-eye"></i></button>
-                
+                    <div class="btn-group" role="group" aria-label="Basic example">                
                         <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
                         <a href="kelolapengguna/{{ $tbu->id }}/edit"" class="btn btn-outline-warning btn-sm" style="margin-right: 5px; border-radius:5px;"><i class="far fa-edit"></i></a>
                 

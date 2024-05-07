@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\bkd;
-
+use DateTime;
 use PDF;
 use App\Http\Controllers\Controller;
 use App\Models\Tb_Dinas;
 use Illuminate\Http\Request;
 use App\Models\Tb_Golongan;
+use App\Models\Tb_Cuti;
 use App\Models\Tb_Jabatan;
 use App\Models\Tb_Jenis_Kelamin;
+use App\Models\Tb_Jenis_Cuti;
 use App\Models\Tb_Pegawai;
 
 class Kelola_OPD extends Controller
@@ -72,12 +74,28 @@ class Kelola_OPD extends Controller
     
     public function generatePdf(Request $request)
     {
-        $nip = $request->input('nip');
+        $nip = $request->input('pegawai');
         $tb_pegawai = Tb_Pegawai::where("NIP", $nip)->first();
-        $jabatan = Tb_Jabatan::select("Jabatan")->where("id_Jabatan", $tb_pegawai->Id_Jabatan)->first();
-        $golongan = Tb_Golongan::select("Golongan")->where("id_Golongan", $tb_pegawai->Id_Golongan)->first();
-        $tb_pegawai->Id_Jabatan = $jabatan->Jabatan;
-        $tb_pegawai->Id_Golongan = $golongan->Golongan;
-        return view('layout.opd.file_cuti', compact('tb_pegawai'));
+        $sisa_cuti = Tb_Cuti::where("NIP", $nip)->count();
+
+        $jenis_cuti = Tb_Jenis_Cuti::select('Nama_Jenis_Cuti')->where('Id_Jenis_Cuti', $request->input('jenis_cuti'))->first();
+        $alasan_cuti = $request->input('alasan_cuti');
+        $dari = $request->input('dari');
+        $sampai = $request->input('sampai');
+        $alamat_cuti = $request->input('alamat_cuti');
+        $no_telp = $request->input('no_telp');
+        $cuti_besar = $request->input('cuti_besar');
+        $cuti_sakit = $request->input('cuti_sakit');
+        $cuti_melahirkan = $request->input('cuti_melahirkan');
+        $cuti_alasan_penting = $request->input('cuti_alasan_penting');
+        $cuti_luar_negara = $request->input('cuti_luar_negara');
+    
+
+        $dariTanggal = new DateTime($request->input('dari'));
+        $sampaiTanggal = new DateTime($request->input('sampai'));
+        
+        $jumlah_hari = $dariTanggal->diff($sampaiTanggal)->days;        
+
+        return view('layout.opd.file_cuti', compact('tb_pegawai', 'alamat_cuti', 'no_telp', 'sisa_cuti', 'jenis_cuti', 'alasan_cuti', 'dari', 'jumlah_hari', 'cuti_besar', 'cuti_sakit', 'cuti_melahirkan', 'cuti_alasan_penting', 'cuti_luar_negara'));
     }
 }

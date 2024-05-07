@@ -1,7 +1,13 @@
 <aside class="main-sidebar sidebar-white-primary elevation-4 d-flex flex-column h-100 pb-4">
-  <a href="./" class="brand-link text-decoration-none">
+@if($user->Id_Role == 1)
+  <a href="{{ route('dashboardbkd') }}" class="brand-link text-decoration-none">
     <img src="{{asset('assets/img/silacut.png')}}" alt="Logo" class="img-fluid">
   </a>
+@elseif($user->Id_Role == 2)
+  <a href="{{ route('dashboardopd') }}" class="brand-link text-decoration-none">
+    <img src="{{asset('assets/img/silacut.png')}}" alt="Logo" class="img-fluid">
+  </a>
+@endif
   <div class="sidebar text-white d-flex flex-column h-100">
     <nav class="mt-3">
       <ul class="nav nav-pills nav-sidebar" style="font-size: 18px;" data-widget="treeview" role="menu" data-accordion="false">

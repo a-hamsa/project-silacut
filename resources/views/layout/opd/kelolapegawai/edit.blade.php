@@ -8,7 +8,7 @@
 <div class="p-4">
     <section class="section">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-title pt-3">
                         <h5 class="text-center">Form Edit Data Pegawai</h5>
@@ -17,7 +17,7 @@
                         <form method="POST" action="{{ route('updatepegawaiopd', ['id' => $tb_pegawai->NIP]) }}">
                             @csrf
                             @method('PUT')
-                            <div class="col-md-12" style=" margin-bottom:15px;">
+                            <!-- <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label for="txtid" class="form-label">NIP</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control @error('txtid') is-invalid @enderror"
@@ -29,7 +29,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label for="txtname" class="form-label">Nama Pegawai</label>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12" style=" margin-bottom:15px;">
+                            <!-- <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label class="form-label">Dinas</label>
                                 <div class="input-group">
                                     <select class="form-select @error('txtdepartment') is-invalid @enderror"
@@ -134,7 +134,7 @@
                                         @enderror
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label for="txtstartingdate" class="form-label required-label">Tanggal Mulai</label>
