@@ -21,7 +21,7 @@ class Rekapan_Cuti extends Controller
         $tb_cuti = Tb_Cuti::where('NIP',$nip)->get()->toArray();
         $tb_pegawai = Tb_Pegawai::where('NIP',$nip)->first();
         for ($i=0; $i < count($tb_cuti); $i++) { 
-            $tb_cuti[0]["Nama_Pegawai"] = $tb_pegawai->Nama_Pegawai;
+            $tb_cuti[$i]["Nama_Pegawai"] = $tb_pegawai->Nama_Pegawai;
         }
         if ($tb_cuti) {
             return response()->json($tb_cuti);

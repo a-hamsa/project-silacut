@@ -10,8 +10,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+                    <div class="card-title pt-3">
+                        <h5 class="text-center">Form Edit Data Dinas</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Form Edit Data OPD</h5>
                         <form action="/kelolaopd/{{$tb_dinas->Id_Dinas}}" method="POST">
                             @csrf
                             @method('PUT')

@@ -62,11 +62,10 @@ class LoginController extends Controller
         ])->onlyInput('username','password');
     }
 
-    public function logout(Request $request): RedirectResponse
-        {
+    public function logout(Request $request): RedirectResponse{
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             return redirect('/login');
-}
+    }
 }
