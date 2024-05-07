@@ -76,6 +76,6 @@ class Data_Cuti_Opd extends Controller
         $tbCuti->save();
 
         // Redirect back or to a different page after storing the data
-        return redirect()->route('storeCuti')->with('success', 'Data has been stored successfully.');
+        return redirect()->back()->with('success', 'Data has been stored successfully.');
     }
 }

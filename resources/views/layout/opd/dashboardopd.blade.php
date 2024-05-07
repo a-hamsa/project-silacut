@@ -18,7 +18,7 @@ Dashboard
                 <h5 class="card-title">Jumlah Pegawai</h5>
               </div>
               <div class="row fw-bold">
-                <h4>3511</h4>
+                <h4>{{$tb_pegawai}}</h4>
               </div>
             </div>
             <div class="col-3">
@@ -41,7 +41,7 @@ Dashboard
                 <h5 class="card-title">Data Cuti</h5>
               </div>
               <div class="row fw-bold">
-                <h4>3511</h4>
+                <h4>{{ $tb_cuti}}</h4>
               </div>
             </div>
             <div class="col-3">

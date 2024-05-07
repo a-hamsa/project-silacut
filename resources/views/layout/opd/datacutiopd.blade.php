@@ -187,7 +187,7 @@
                 </div>
                 <div class="row">
                     <div class="col d-flex justify-content-end">
-                        <button id="printCuti" class="btn" style="background-color: #FB6340; color: white;"><i class="fa-solid fa-print"></i> Print File Permohonan Cuti</button>
+                        <a id="printCuti" href="#" class="btn" style="background-color: #FB6340; color: white;"><i class="fa-solid fa-print"></i> Print File Permohonan Cuti</a>
                     </div>
                 </div>
                 <hr style="height:3px;border:none;color:#000;background-color:#000;margin-bottom: 16px;">
@@ -218,7 +218,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" id="submitCuti" class="btn btn-primary">Submit Cuti</button>
+                <button type="button" id="submitCuti" class="btn btn-primary">Submit Cuti</button>
             </div>
         </form>
     </div>
@@ -336,7 +336,6 @@ $(document).ready(function(){
 
     $("#submitCuti").click(function(event) {
         event.preventDefault();
-        console.log($("#myForm").submit());
         $("#myForm").submit();
     });
 
