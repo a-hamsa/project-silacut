@@ -26,6 +26,7 @@
                         <th>Jenis Cuti</th>
                         <th>Tanggal Cuti</th>
                         <th>Diajukan</th>
+                        <!-- <th>Aksi</th> -->
                     </tr>
                 </thead>
 
@@ -38,7 +39,29 @@
                             <td><span class="badge text-bg-success">{{ $tbc->jeniscuti->Nama_Jenis_Cuti}}</span></td>
                             <td>{{ $tbc->Tanggal_Mulai_Cuti }} s.d {{ $tbc->Tanggal_Berakhir_Cuti }}</td>
                             <td>{{ $tbc->Tanggal_Pengajuan}}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-outline-info btn-sm"
+                                        style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal"
+                                        data-bs-target="#viewperiksa{{ $tbc->Id_Data_Cuti }}"><i class="far fa-eye"></i></button>
 
+                                    <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
+                                    <a href="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}/edit"
+                                        class="btn btn-outline-warning btn-sm"
+                                        style="margin-right: 5px; border-radius:5px;">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <form action="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}" method="POST" id="deleteFormKelolaPegawaiBkd">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm delete"
+                                                data-nip="{{ $tbc->NIP }}" data-nama="{{ $tbc->Nama_Pegawai }}"
+                                                style="border-radius:5px;">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
