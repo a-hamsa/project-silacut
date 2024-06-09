@@ -47,7 +47,7 @@ class LoginController extends Controller
         }
 
         // Authentication failed, redirect back with error message
-        return redirect()->back()->withInput()->withErrors(['username' => 'Invalid credentials']);
+        return redirect()->back()->withInput()->withErrors(['username' => 'Password Atau Username Salah']);
     }
 
 

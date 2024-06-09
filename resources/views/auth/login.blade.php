@@ -14,20 +14,17 @@
                 <div class="input-group mb-3">
                     <input type="text" placeholder="Username" class="form-control form-control-lg" id="username" autocomplete="on" name="username" value="{{ old('username') }}" oninput="hideError('username')">
                 </div>
-                @error('username')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
                 <div class="input-group mb-4">
                     <input type="password" placeholder="Password" class="form-control form-control-lg" id="password" name="password" oninput="hideError('password')">
                 </div>
-                @error('password')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror
                 <div class="input-group mb-3">
                     <button type="submit" class="btn btn-lg btn-primary w-100" aria-label="Close">
                     {{ __('Login') }}
                     </button>
                 </div>
+                @error('username')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
                 <div class="text-center text-secondary">BKPSDMD @ Kabupaten Morowali - 2022</div>
             </form>
         </div>  
