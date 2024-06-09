@@ -32,23 +32,23 @@
         <table class="table table-bordered border-black" >
             <tbody>
                 <tr>
-                    <td class="fw-bold" colspan="5">I. DATA PEGAWAI</td>
+                    <td class="fw-bold" colspan="7">I. DATA PEGAWAI</td>
                 </tr>
                 <tr>
                     <td>Nama</td>
-                    <td colspan="4">{{$tb_pegawai->Nama_Pegawai}}</td>
+                    <td colspan="6">{{$tb_pegawai->Nama_Pegawai}}</td>
                 </tr>
                 <tr>
                     <td>NIP</td>
-                    <td colspan="4">{{$tb_pegawai->NIP}}</td>
+                    <td colspan="6">{{$tb_pegawai->NIP}}</td>
                 </tr>
                 <tr>
                     <td>Jabatan</td>
-                    <td colspan="4">{{$tb_pegawai->jabatan->Jabatan}}</td>
+                    <td colspan="6">{{$tb_pegawai->jabatan->Jabatan}}</td>
                 </tr>
                 <tr>
                     <td>Masa Kerja</td>
-                    <td colspan="4">{{
+                    <td colspan="6">{{
                             now()->diffInYears($tb_pegawai->Tanggal_Mulai) . ' Tahun | ' .
                             now()->diffInMonths($tb_pegawai->Tanggal_Mulai) . ' Bulan'
                         }}
@@ -56,105 +56,108 @@
                 </tr>
                 <tr>
                     <td>Unit Kerja</td>
-                    <td colspan="4">{{$tb_pegawai->dinas->Dinas}}</td>
+                    <td colspan="6">{{$tb_pegawai->dinas->Dinas}}</td>
                 </tr>
                 <tr>
-                    <td style="color: transparent" colspan="5">I. DATA PEGAWAI</td>
+                    <td style="color: transparent" colspan="7">I. DATA PEGAWAI</td>
                 </tr>
                 <tr>
-                    <td class="fw-bold" colspan="5">II. JENIS CUTI YANG DIAMBIL</td>
+                    <td class="fw-bold" colspan="7">II. JENIS CUTI YANG DIAMBIL</td>
                 </tr>
                 <tr>
-                    <td colspan="5">{{$jenis_cuti}}</td>
+                    <td colspan="7">{{$jenis_cuti->Nama_Jenis_Cuti}}</td>
                 </tr>
                 <tr>
-                    <td style="color: transparent" colspan="5">I. DATA PEGAWAI</td>
+                    <td style="color: transparent" colspan="7">I. DATA PEGAWAI</td>
                 </tr>
                 <tr>
-                    <td class="fw-bold" colspan="5">III. ALASAN CUTI</td>
+                    <td class="fw-bold" colspan="7">III. ALASAN CUTI</td>
                 </tr>
                 <tr>
-                    <td colspan="5">{{$alasan_cuti}}</td>
+                    <td colspan="7">{{$alasan_cuti}}</td>
                 </tr>
                 <tr>
-                    <td style="color: transparent" colspan="5">I. DATA PEGAWAI</td>
+                    <td style="color: transparent" colspan="7">I. DATA PEGAWAI</td>
                 </tr>
                 <tr>
-                    <td class="fw-bold" colspan="5">IV. LAMA CUTI</td>
+                    <td class="fw-bold" colspan="7">IV. LAMA CUTI</td>
                 </tr>
                 <tr>
                     <td>Selama</td>
-                    <td>{{$jumlah_hari}}</td>
+                    <td>{{$lama_cuti}}</td>
                     <td>Hari</td>
                     <td>Mulai Tanggal</td>
                     <td>{{$dari}}</td>
+                    <td>s/d</td>
+                    <td>{{$sampai}}</td>
                 </tr>
                 <tr>
-                    <td class="fw-bold" colspan="5">V. CATATAN CUTI</td>
+                    <td class="fw-bold" colspan="7">V. CATATAN CUTI</td>
                 </tr>
                 <tr>
                     <td colspan="3">1. Cuti Tahunan</td>
                     <td>2. Cuti Besar</td>
-                    <td>{{$cuti_besar}}</td>
+                    <td colspan="3">{{$cuti_besar}}</td>
                 </tr>
                 <tr>
                     <td>Tahun</td>
                     <td>Sisa</td>
                     <td>Keterangan</td>
                     <td>3. Cuti Sakit</td>
-                    <td>{{$cuti_sakit}}</td>
+                    <td colspan="3">{{$cuti_sakit}}</td>
                 </tr>
                 <tr>
                     <td>N-2</td>
                     <td></td>
                     <td></td>
                     <td>4. Cuti Melahirkan</td>
-                    <td>{{$cuti_melahirkan}}</td>
+                    <td colspan="3">{{$cuti_melahirkan}}</td>
                 </tr>
                 <tr>
                     <td>N-1</td>
                     <td></td>
                     <td></td>
                     <td>5. Cuti Karena Alasan Penting</td>
-                    <td>{{$cuti_alasan_penting}}</td>
+                    <td colspan="3">{{$cuti_alasan_penting}}</td>
                 </tr>
                 <tr>
                     <td>N</td>
                     <td>{{12 - $sisa_cuti}}</td>
                     <td></td>
                     <td>6. Cuti Di Luar Tanggungan Negara</td>
-                    <td>{{$cuti_luar_negara}}</td>
+                    <td colspan="3">{{$cuti_luar_negara}}</td>
                 </tr>
                 <tr>
-                    <td class="fw-bold" colspan="5">VI. ALAMAT SELAMA MENJALANKAN CUTI</td>
+                    <td class="fw-bold" colspan="7">VI. ALAMAT SELAMA MENJALANKAN CUTI</td>
                 </tr>
                 <tr>
                     <td colspan="3">{{$alamat_cuti}}</td>
                     <td>Telepon</td>
-                    <td>{{$no_telp}}</td>
+                    <td colspan="3">{{$no_telp}}</td>
                 </tr>
                 <tr>
                     <td colspan="3"></td>
-                    <td colspan="2" class="text-center">Hormat Saya,</td>
+                    <td class="text-center">Hormat Saya,</td>
+                    <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td class="fw-bold" colspan="5">VII. PERTIMBANGAN ATASAN LANGSUNG</td>
+                    <td class="fw-bold" colspan="7">VII. PERTIMBANGAN ATASAN LANGSUNG</td>
                 </tr>
                 <tr>
                     <td>Disetujui</td>
                     <td>Perubahan</td>
                     <td>Ditangguhkan</td>
-                    <td colspan="2">Tidak Disetujui</td>
+                    <td colspan="4">Tidak Disetujui</td>>
                 </tr>
                 <tr>
                     <td style="color: transparent">E</td>
                     <td style="color: transparent">E</td>
                     <td style="color: transparent">E</td>
-                    <td colspan="2"></td>
+                    <td colspan="4"></td>
                 </tr>
                 <tr>
                     <td colspan="3"></td>
-                    <td colspan="2" class="text-center fw-bold">Pimpinan OPD</td>
+                    <td colspan="4" class="text-center fw-bold">Pimpinan OPD</td>
                 </tr>
             </tbody>
         </table>

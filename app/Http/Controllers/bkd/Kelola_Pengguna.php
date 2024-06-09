@@ -20,7 +20,16 @@ class Kelola_Pengguna extends Controller
     {
         $user = auth()->user();
         $tb_user = Tb_User::all();
-        $tb_dinas = Tb_Dinas::all();   
+        $id_dinas = [];
+        foreach ($tb_user as $key => $value) {
+            array_push($id_dinas, $value->Id_Dinas);
+            // echo  "<hr>" . $key . " ini key dan ini adalah valuenya id dinas " . $value->Id_Dinas;
+        }
+        // print_r($id_dinas) ;
+        $tb_dinas = Tb_Dinas::whereNotIn("Id_Dinas", $id_dinas)->get();
+        // foreach ($tb_dinas as $key => $value) {
+        //     echo  "<hr>" . $key . " ini key dan ini adalah valuenya " . $value;
+        // }
         return view('layout.bkd.kelolapengguna.create',compact(['user','tb_user','tb_dinas']));
     }
 
