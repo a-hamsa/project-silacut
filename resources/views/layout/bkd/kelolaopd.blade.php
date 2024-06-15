@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-end">
-                <a href="kelolapegawaibkd/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah Pegawai</span></a>
+                <a href="kelolaopd/create" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span> Tambah OPD</span></a>
             </div>
         </div>
     </div>
@@ -27,8 +27,11 @@
 
                 <tbody>
                     @foreach ($tb_dinas as $dns)
+                        @if($dns->Dinas == "BKD")
+                            @continue
+                        @endif
                         <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
+                            <th scope="row">{{ $loop->iteration -1 }}</th>
                             <td>{{ $dns->Dinas }}</td>
                             {{-- <td>{{ $pgw->Nama_Pegawai }}</td>
                             <td>{{ $pgw->dinas->Dinas }}</td> --}}

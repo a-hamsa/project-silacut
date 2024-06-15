@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('tb_pegawai', function (Blueprint $table) {
             $table->unsignedBigInteger('Id_Dinas')->unsigned();
-            $table->id('NIP');
+            $table->string('NIP')->primary();
             $table->string('Nama_Pegawai', 100);
             $table->date('Tanggal_Lahir');
+            $table->string('Tempat_Lahir');
             $table->unsignedBigInteger('Id_Jenis_Kelamin')->unsigned();
             $table->unsignedBigInteger('Id_Jabatan')->unsigned();
             $table->date('Tanggal_Mulai');
             $table->unsignedBigInteger('Id_Golongan')->unsigned();
-            // $table->integer('Kuota_Cuti');
+            $table->integer('Kuota_Cuti')->default(12);
             $table->string('Alamat_Pegawai', 100);
             $table->integer('Telepon_Pegawai');
 
@@ -29,6 +30,11 @@ return new class extends Migration
             $table->foreign('Id_Jenis_Kelamin')->references('Id_Jenis_Kelamin')->on('tb_jenis_kelamin');
             $table->foreign('Id_Jabatan')->references('Id_Jabatan')->on('tb_jabatan');
         });
+
+        DB::table('tb_pegawai')->insert([
+            ['NIP' => '12345', 'Id_Dinas' => 1, 'Nama_Pegawai' => 'John Doe', 'Tanggal_Lahir' => '1980-01-01','Tempat_Lahir' => 'Makassar', 'Id_Jenis_Kelamin' => 1, 'Id_Jabatan' => 1, 'Tanggal_Mulai' => '2020-01-01', 'Id_Golongan' => 1,'Kuota_Cuti' => 12, 'Alamat_Pegawai' => '123 Main St', 'Telepon_Pegawai' => 123456789],
+            ['NIP' => '67890', 'Id_Dinas' => 2, 'Nama_Pegawai' => 'Jane Smith', 'Tanggal_Lahir' => '1985-05-05','Tempat_Lahir' => 'Makassar', 'Id_Jenis_Kelamin' => 2, 'Id_Jabatan' => 2, 'Tanggal_Mulai' => '2021-02-01', 'Id_Golongan' => 2,'Kuota_Cuti' => 12, 'Alamat_Pegawai' => '456 Elm St', 'Telepon_Pegawai' => 987654321],
+        ]);
     }
 
     /**

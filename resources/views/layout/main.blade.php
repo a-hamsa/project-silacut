@@ -7,22 +7,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  
     <title>@yield('title')</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <script src="../adminLTE/plugins/jquery/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- Boostrap 5 Datatable -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/jszip-3.10.1/dt-2.0.1/b-3.0.0/b-colvis-3.0.0/b-html5-3.0.0/b-print-3.0.0/fc-5.0.0/fh-4.0.0/r-3.0.0/sc-2.4.0/sb-1.7.0/sp-2.3.0/sr-1.4.0/datatables.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/jszip-3.10.1/dt-2.0.1/b-3.0.0/b-colvis-3.0.0/b-html5-3.0.0/b-print-3.0.0/fc-5.0.0/fh-4.0.0/r-3.0.0/sc-2.4.0/sb-1.7.0/sp-2.3.0/sr-1.4.0/datatables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/logomorowali.png') }}" rel="icon">
@@ -39,8 +36,6 @@
     <link rel="stylesheet" href="{{ asset('assets/adminLTE/dist/css/adminlte.min.css') }}">
     
     <!-- Template Main CSS File -->
-    <link rel="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
-
     <script src="https://kit.fontawesome.com/d51e822db9.js" crossorigin="anonymous"></script>
 
     <!-- Toastr -->
@@ -48,13 +43,6 @@
 
     <!-- SweetAlert -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-
-
-    
-    <!-- Data Table -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.5/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/sc-2.4.1/sb-1.7.1/datatables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css" rel="stylesheet">
 
 </head>
 
@@ -96,10 +84,11 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.5/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/sc-2.4.1/sb-1.7.1/datatables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/jszip-3.10.1/dt-2.0.1/b-3.0.0/b-colvis-3.0.0/b-html5-3.0.0/b-print-3.0.0/fc-5.0.0/fh-4.0.0/r-3.0.0/sc-2.4.0/sb-1.7.0/sp-2.3.0/sr-1.4.0/datatables.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 
     <script>
         $(function() {

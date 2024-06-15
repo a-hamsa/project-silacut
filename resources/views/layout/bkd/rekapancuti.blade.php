@@ -10,8 +10,8 @@
         <div class="card-body">
             <div class="d-flex justify-content-end">
                 <label for="pegawai" class="w-25">Cari Pegawai</label>
-                <select class="form-select" id="nip">
-                    <option value="test" disabled selected hidden>Cari Pegawai</option>
+                <select class="form-select" id="nip" placeholder="Cari Pegawai">
+                    <option value="">Cari Pegawai</option>
                     @foreach($tb_pegawai as $pgw)
                     <option value="{{$pgw->NIP}}">{{$pgw->Nama_Pegawai}} ({{$pgw->NIP}})</option>
                     @endforeach
@@ -31,10 +31,10 @@
                     <th>Jenis Cuti</th>
                     <th>Tanggal Cuti</th>
                     <th>Diajukan</th>
-                    <!-- <th>Satuan Kerja</th> -->
-                    <!-- <th>Hak Cuti</th>
+                    <th>Satuan Kerja</th>
+                    <th>Hak Cuti</th>
                     <th>Jumlah Hari</th>
-                    <th>Sisa Cuti</th> -->
+                    <th>Sisa Cuti</th>
                 </tr>
             </thead>
         </table>
@@ -44,6 +44,10 @@
 
 <script>
 $(document).ready(function() {
+    $('#nip').selectize({
+        sortField: 'text'
+    });
+    
     function getTableData() {
         var table = $('#data_pegawai').DataTable();
         table.clear();
@@ -61,7 +65,23 @@ $(document).ready(function() {
             },
             success: function(response){
                 console.log(response)
-                $('#data_pegawai').DataTable( {
+                let hakCuti = 12; 
+                let remainingLeaves = {};
+                
+                response.forEach(employee => {
+                    let startDate = new Date(employee.Tanggal_Mulai_Cuti);
+                    let endDate = new Date(employee.Tanggal_Berakhir_Cuti);
+                    let timeDiff = endDate - startDate;
+                    let daysTaken = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; 
+                    if (!remainingLeaves[employee.NIP]) {
+                        remainingLeaves[employee.NIP] = hakCuti;
+                    }
+                    remainingLeaves[employee.NIP] -= daysTaken;
+                    employee.daysTaken = daysTaken;
+                    employee.remainingLeaves = remainingLeaves[employee.NIP];
+                });
+
+                $('#data_pegawai').DataTable({
                     createdRow: function(row, data, index) {
                         $('td', row).eq(0).html(index + 1);
                     },
@@ -72,41 +92,58 @@ $(document).ready(function() {
                         },
                         {
                             targets: [3],
-                            render: function (data, type, row) {
+                            render: function(data, type, row) {
                                 if (data == 1) {
-                                    return '<span class="badge text-bg-success">Cuti Melahirkan</span></h1>';
+                                    return '<span class="badge text-bg-success">Cuti Melahirkan</span>';
                                 }
-                                return '<span class="badge text-bg-success">Cuti Bersama</span></h1>';
+                                return '<span class="badge text-bg-success">Cuti Bersama</span>';
                             }
                         },
                     ],
-                    responsive: false, 
-                    lengthChange: false, 
+                    responsive: false,
+                    lengthChange: false,
                     autoWidth: false,
                     data: response,
                     columns: [
-                        {data: null},
-                        {data: "NIP"},
-                        {data: "Nama_Pegawai"},
-                        {data: "Id_Jenis_Cuti"},
+                        { data: null },
+                        { data: "NIP" },
+                        { data: "Nama_Pegawai" },
+                        { data: "Id_Jenis_Cuti" },
                         {
                             data: null,
                             render: function(data, type, row) {
-                                return row.Tanggal_Mulai_Cuti + " s/d " + row.Tanggal_Berakhir_Cuti;
+                                return data.Tanggal_Mulai_Cuti + " s/d " + data.Tanggal_Berakhir_Cuti;
                             }
                         },
-                        {data: "Tanggal_Pengajuan"},
+                        { data: "Tanggal_Pengajuan" },
+                        { data: "Dinas" },
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                return data.remainingLeaves + data.daysTaken; 
+                            }
+                        },
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                return data.daysTaken; 
+                            }
+                        },
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                return data.remainingLeaves; 
+                            }
+                        },
                     ],
                     scrollX: true,
                     scrollY: 300,
                     scrollCollapse: true,
                     paging: false,
-                    layout: {
-                    topStart: {
-                        buttons: ["copy", "csv", "excel", "print"]
-                    }}
+                    dom: '<"topStart"B>rt',
+                    buttons: ["copy", "csv", "excel", "print"]
                 });
-
+                
             },
             error: function(xhr, status, error){
                 console.error('Terjadi kesalahan: ' + error);

@@ -128,6 +128,17 @@
                 </div>
                 <div class="row m-0 pb-4">
                     <div class="col-3">
+                        <label for="lama_cuti">Lama Cuti</label>
+                    </div>
+                    <div class="col-2">
+                        <input type="number" class="form-control w-100" id="lama_cuti" name="lama_cuti">
+                    </div>
+                    <div class="col-6">
+                        <label for="sampai" class="text-end">Hari Kerja</label>
+                    </div>
+                </div>
+                <div class="row m-0 pb-4">
+                    <div class="col-3">
                         <label for="cuti_besar">Cuti Besar</label>
                     </div>
                     <div class="col-9">

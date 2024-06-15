@@ -10,8 +10,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+                    <div class="card-title pt-3">
+                        <h5 class="text-center">Form Tambah Data Pegawai</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Form Tambah Data Pegawai</h5>
                         <form action="{{ route('kelolapegawaibkd.store') }}" method="POST">
                             @csrf
                             <div class="col-md-12" style="margin-bottom:15px;">

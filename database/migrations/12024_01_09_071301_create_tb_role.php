@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_jenis_kelamin', function (Blueprint $table) {
-            $table->id('Id_Jenis_Kelamin');
-            $table->string('Jenis_Kelamin');
+        Schema::create('tb_role', function (Blueprint $table) {
+            $table->id('Id_Role');
+            $table->string('Role', 50);
         });
+
+        DB::table('tb_role')->insert([
+            ['Id_Role' => 1, 'Role' => 'BKD'],
+            ['Id_Role' => 2, 'Role' => 'OPD'],
+        ]);
     }
 
     /**
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_jenis_kelamin');
+        Schema::dropIfExists('tb_role');
     }
 };

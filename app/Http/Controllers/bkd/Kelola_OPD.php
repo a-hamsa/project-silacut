@@ -89,6 +89,7 @@ class Kelola_OPD extends Controller
         $cuti_melahirkan = $request->input('cuti_melahirkan');
         $cuti_alasan_penting = $request->input('cuti_alasan_penting');
         $cuti_luar_negara = $request->input('cuti_luar_negara');
+        $lama_cuti = $request->input('lama_cuti');
     
 
         $dariTanggal = new DateTime($request->input('dari'));
@@ -96,6 +97,6 @@ class Kelola_OPD extends Controller
         
         $jumlah_hari = $dariTanggal->diff($sampaiTanggal)->days;        
 
-        return view('layout.opd.file_cuti', compact('tb_pegawai', 'alamat_cuti', 'no_telp', 'sisa_cuti', 'jenis_cuti', 'alasan_cuti', 'dari', 'jumlah_hari', 'cuti_besar', 'cuti_sakit', 'cuti_melahirkan', 'cuti_alasan_penting', 'cuti_luar_negara'));
+        return view('layout.opd.file_cuti', compact('tb_pegawai', 'sampai', 'alamat_cuti', 'no_telp', 'lama_cuti', 'sisa_cuti', 'jenis_cuti', 'alasan_cuti', 'dari', 'jumlah_hari', 'cuti_besar', 'cuti_sakit', 'cuti_melahirkan', 'cuti_alasan_penting', 'cuti_luar_negara'));
     }
 }

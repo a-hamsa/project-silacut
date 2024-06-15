@@ -23,6 +23,7 @@ class Data_Cuti_Opd extends Controller
         return view('layout.opd.datacutiopd', compact('user', 'tb_cuti', 'tb_pegawai', 'tb_jenis_cuti'));
     }
 
+
     public function getPegawai(Request $request){
 
         $pegawai = $request->input("nip");

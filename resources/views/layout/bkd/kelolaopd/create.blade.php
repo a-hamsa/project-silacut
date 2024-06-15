@@ -10,8 +10,10 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card">
+                    <div class="card-title pt-3">
+                        <h5 class="text-center">Form Tambah Data Dinas</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Form Tambah Data Dinas</h5>
                         <form action="{{ route('kelolaopd.store') }}" method="POST">
                         {{-- <form action="/kelolapegawaibkd" method="POST"> --}}
                         {{-- <form method="POST" action="{{ route('kelolapegawaibkd.store') }}"> --}}
