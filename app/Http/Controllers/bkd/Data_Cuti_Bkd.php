@@ -19,4 +19,9 @@ class Data_Cuti_Bkd extends Controller
         $tb_cuti = Tb_Cuti::all();
         return view('layout.bkd.datacutibkd', compact(['tb_cuti', 'user']));
     }
+
+    public function data_cuti_bkd(Request $request) {
+        $tb_cuti = Tb_Cuti::with('pegawai')->get();
+        return $tb_cuti;
+    }
 }

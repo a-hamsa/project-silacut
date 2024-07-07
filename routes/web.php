@@ -22,6 +22,7 @@ Route::get('/', [LayoutController::class, 'index'])->middleware('auth');
 
 Route::group(['middleware' => ['auth']], function(){
     Route::post('/get_cuti', [Rekapan_Cuti::class, 'getCuti'])->name('get_cuti');
+    Route::post('/get_cuti', [Rekapan_Cuti::class, 'getCuti'])->name('get_cuti');
     Route::group(['middleware' => [CekUserLogin::class.':1']], function(){
         Route::get('dashboardbkd', [Dashboard_Bkd::class, 'index'])->name('dashboardbkd');
         Route::resource('kelolapegawaibkd', BkdData_Pegawai::class);
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('kelolapengguna/store', [Kelola_Pengguna::class, 'store'])->name('kelolapengguna.store');
         Route::delete('kelolapengguna/{id}', [Kelola_Pengguna::class, 'destroy']);
         Route::get('datacutibkd', [Data_Cuti_Bkd::class, 'index'])->name('datacutibkd');
+        Route::post('data_cuti_bkd', [Data_Cuti_Bkd::class, 'data_cuti_bkd'])->name('data_cuti_bkd');
         Route::get('rekapancuti', [Rekapan_Cuti::class, 'index'])->name('rekapancuti');
     });
     Route::group(['middleware' => [CekUserLogin::class.':2']], function(){

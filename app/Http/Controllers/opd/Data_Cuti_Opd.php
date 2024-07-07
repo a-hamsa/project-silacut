@@ -23,7 +23,6 @@ class Data_Cuti_Opd extends Controller
         return view('layout.opd.datacutiopd', compact('user', 'tb_cuti', 'tb_pegawai', 'tb_jenis_cuti'));
     }
 
-
     public function getPegawai(Request $request){
 
         $pegawai = $request->input("nip");
@@ -43,24 +42,40 @@ class Data_Cuti_Opd extends Controller
         return response()->json($tb_pegawai);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $validatedData = $request->validate([
             'pegawai' => 'required',
             'jenis_cuti' => 'required',
             'dari' => 'required|date',
-            'sampai' => 'required|date',
+            'sampai' => 'required|date|after_or_equal:dari',
             'alasan_cuti' => 'required',
             'alamat_cuti' => 'required',
+            'lama_cuti' => 'required|integer',
+            'SKTerakhir' => 'nullable|file|mimes:pdf|max:2048',
+            'Absen' => 'nullable|file|mimes:pdf|max:2048',
+            'scan_cuti' => 'nullable|file|mimes:pdf|max:2048',
         ]);
-
         // Handle file uploads
-        // $skTerakhirPath = $request->file('SKTerakhir')->store('sk_terakhir', 'public');
-        // $absenPath = $request->file('Absen')->store('absen', 'public');
-        // $scanCutiPath = $request->file('scan_cuti')->store('scan_cuti', 'public');
-
-        // Create a new Tb_Cuti instance
         $tbCuti = new Tb_Cuti;
+        if ($request->hasFile('SKTerakhir')) {
+            $file = $request->file('SKTerakhir');
+            $fileName = md5($file. time()) . '.pdf';
+            $file->move('sk_terakhir', $fileName);
+            $tbCuti->SK_Terakhir = $fileName;
+        }
+        if ($request->hasFile('Absen')) {
+            $file = $request->file('Absen');
+            $fileName = md5($file. time()) . '.pdf';
+            $file->move('absen', $fileName);
+            $tbCuti->Rekap_Absen = $fileName;
+        }
+        if ($request->hasFile('scan_cuti')) {
+            $file = $request->file('scan_cuti');
+            $fileName = md5($file. time()) . '.pdf';
+            $file->move('scan_cuti', $fileName);
+            $tbCuti->Permohonan_Cuti = $fileName;
+        }
+
         $tbCuti->NIP = $validatedData['pegawai'];
         $tbCuti->Id_Jenis_Cuti = $validatedData['jenis_cuti'];
         $tbCuti->Tanggal_Mulai_Cuti = $validatedData['dari'];
@@ -68,14 +83,12 @@ class Data_Cuti_Opd extends Controller
         $tbCuti->Tanggal_Pengajuan = now()->format('Y-m-d');
         $tbCuti->Alasan_Cuti = $validatedData['alasan_cuti'];
         $tbCuti->Alamat_Cuti = $validatedData['alamat_cuti'];
-        // Set file paths
-        // $tbCuti->sk_terakhir_path = $skTerakhirPath;
-        // $tbCuti->absen_path = $absenPath;
-        // $tbCuti->scan_cuti_path = $scanCutiPath;
-        
+        $tbCuti->Lama_Cuti = $validatedData['lama_cuti'];
+        // $tbCuti->No_Telp = $validatedData['no_telp'] ?? null;
+    
         // Save the Tb_Cuti instance
         $tbCuti->save();
-
+    
         // Redirect back or to a different page after storing the data
         return redirect()->back()->with('success', 'Data has been stored successfully.');
     }

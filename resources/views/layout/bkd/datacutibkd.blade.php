@@ -7,13 +7,6 @@
 @section('content')
 
 <div class="p-4">
-    <div class="card">
-        <div class="card-body">
-            <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal" data-bs-whatever="@mdo"><i class="fa-solid fa-user-plus me-2"></i><span>Usul Cuti</span></button>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md">
             <h1 class="card-title"></h1>
@@ -26,7 +19,7 @@
                         <th>Jenis Cuti</th>
                         <th>Tanggal Cuti</th>
                         <th>Diajukan</th>
-                        <!-- <th>Aksi</th> -->
+                        <th>Aksi</th>
                     </tr>
                 </thead>
 
@@ -40,67 +33,110 @@
                             <td>{{ $tbc->Tanggal_Mulai_Cuti }} s.d {{ $tbc->Tanggal_Berakhir_Cuti }}</td>
                             <td>{{ $tbc->Tanggal_Pengajuan}}</td>
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-info btn-sm"
-                                        style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal"
-                                        data-bs-target="#viewperiksa{{ $tbc->Id_Data_Cuti }}"><i class="far fa-eye"></i></button>
-
-                                    <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                                    <a href="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}/edit"
-                                        class="btn btn-outline-warning btn-sm"
-                                        style="margin-right: 5px; border-radius:5px;">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <form action="kelolapegawaibkd/{{ $tbc->Id_Data_Cuti }}" method="POST" id="deleteFormKelolaPegawaiBkd">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-outline-secondary btn-sm delete"
-                                                data-nip="{{ $tbc->NIP }}" data-nama="{{ $tbc->Nama_Pegawai }}"
-                                                style="border-radius:5px;">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </div>
+                                <button type="button" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewPdfModal" data-pdf-url="{{ asset('sk_terakhir/' . $tbc->SK_Terakhir) }}, {{ asset('absen/' . $tbc->Rekap_Absen) }}, {{ asset('scan_cuti/' . $tbc->Permohonan_Cuti) }}"> <i class="far fa-eye"></i></button>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            <h1 class="card-title"></h1>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="viewPdfModal" tabindex="-1" aria-labelledby="viewPdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewPdfModalLabel">View PDFs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!-- First PDF -->
+                    <div class="col-md-4">
+                        <iframe id="pdfFrame1" src="" width="100%" height="500px" style="border: none;"></iframe>
+                    </div>
+                    <!-- Second PDF -->
+                    <div class="col-md-4">
+                        <iframe id="pdfFrame2" src="" width="100%" height="500px" style="border: none;"></iframe>
+                    </div>
+                    <!-- Third PDF -->
+                    <div class="col-md-4">
+                        <iframe id="pdfFrame3" src="" width="100%" height="500px" style="border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+
 <script>
 $(document).ready(function(){
-
-    function updatePegawai() {
-        var pegawai = $('#pegawai').val();
+    function getTableData() {
         $.ajax({
-            url: "{{ route('getpegawai') }}",
+            url: "{{ route('data_cuti_bkd') }}",
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data: {
-                pegawai: pegawai,
+                nip: "E",
             },
             success: function(response){
                 console.log(response)
-                let currentDate = new Date();
-                let masa_kerja = new Date(response.Tanggal_Mulai);
-                let tahun = currentDate.getFullYear() - masa_kerja.getFullYear();
-                let bulan = currentDate.getMonth() - masa_kerja.getMonth() + 1;
-                if (bulan < 0) {
-                    tahun = tahun - 1
-                    bulan = bulan + 12;
-                }
-                $('#nama').val(response.Nama_Pegawai);
-                $('#nip').val(response.NIP.toString());
-                $('#jabatan').val(response.Id_Jabatan);
-                $('#tahun').val(tahun);
-                $('#bulan').val(bulan);
-                $('#unit_kerja').val(response.Id_Golongan);
+                $('#kelolapegawaiopd').DataTable({
+                    createdRow: function(row, data, index) {
+                        $('td', row).eq(0).html(index + 1);
+                    },
+                    columnDefs: [
+                        {
+                            targets: "_all",
+                            className: "text-center"
+                        },
+                        {
+                            targets: [3],
+                            render: function(data, type, row) {
+                                return '<span class="badge text-bg-success">'+ data +'</span>';
+                            }
+                        },
+                    ],
+                    responsive: false,
+                    lengthChange: false,
+                    autoWidth: false,
+                    data: response,
+                    columns: [
+                        { data: null },
+                        { data: "NIP" },
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                return data.pegawai.Nama_Pegawai;
+                            }
+                        },
+                        { data: "Id_Jenis_Cuti" },
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                return data.Tanggal_Mulai_Cuti + " s/d " + data.Tanggal_Berakhir_Cuti;
+                            }
+                        },
+                        { data: "Tanggal_Pengajuan" },
+                        {
+                            data: null,
+                            render: function(data, type, row) {
+                                return '<button type="button" onclick="showPDF()" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewPdfModal" data-pdf-url="./sk_terakhir/' + data.SK_Terakhir + ',./absen/' + data.Rekap_Absen + ',./scan_cuti/' + data.Permohonan_Cuti + '"><i class="far fa-eye"></i></button>';
+                            }
+                        },
+                    ],
+                    scrollX: true,
+                    scrollY: 300,
+                    scrollCollapse: true,
+                    paging: false,
+                    dom: '<"topStart"B>rt',
+                    buttons: ["copy", "csv", "excel", "print"]
+                });
             },
             error: function(xhr, status, error){
                 console.error('Terjadi kesalahan: ' + error);
@@ -108,18 +144,19 @@ $(document).ready(function(){
         });
     }
 
-    $('#pegawai').on('change', function(){
-        updatePegawai()
-    });
-
-    $("#myForm").submit(function(event) {
-        event.preventDefault();
-        let nip = $('#nip').val();
-        if (nip != null) {
-            window.open("/fileCutiOPD?nip=" + nip, '_blank');
-        }
-    });
-
+    getTableData();
+    function showPDF() {
+        document.querySelectorAll('button[data-bs-toggle="modal"]').forEach(button => {
+            button.addEventListener('click', function () {
+                const pdfUrls = this.getAttribute('data-pdf-url').split(',');
+                console.log(pdfUrls)
+                // Set the src for each iframe
+                document.getElementById('pdfFrame1').src = pdfUrls[0].trim();
+                document.getElementById('pdfFrame2').src = pdfUrls[1].trim();
+                document.getElementById('pdfFrame3').src = pdfUrls[2].trim();
+            });
+        });
+    }
 });
 </script>
 @endsection

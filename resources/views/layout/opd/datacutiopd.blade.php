@@ -8,7 +8,7 @@
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form id="myForm" action="{{ route('storeCuti') }}" method="POST">
+        <form id="myForm" action="{{ route('storeCuti') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="formModalLabel">Detail Cuti</h1>
