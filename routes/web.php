@@ -54,6 +54,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('getpegawai', [Data_Cuti_Opd::class, 'getPegawai'])->name('getpegawai');
         Route::resource('datacutiopd', Data_Cuti_Opd::class);
         Route::post('storedatacuti', [Data_Cuti_Opd::class, 'store'])->name('storeCuti');
+        Route::post('editdatacuti', [Data_Cuti_Opd::class, 'edit'])->name('editCuti');
+        Route::delete('deletedatacuti/{id}', [Data_Cuti_Opd::class, 'destroy'])->name('deleteCuti');
         Route::get('kelolapegawaiopd', [Data_Pegawai_Opd::class, 'index'])->name('kelolapegawaiopd');
         Route::get('createpegawaiopd', [Data_Pegawai_Opd::class, 'create'])->name('createpegawaiopd');
         Route::post('storepegawaiopd', [Data_Pegawai_Opd::class, 'store'])->name('storepegawaiopd');

@@ -59,54 +59,10 @@ class Data_Pegawai_Opd extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'txtname' => 'required',
-            'txtid' => 'required|unique:tb_pegawai,NIP|min:18|max:18',
-            'txtposition' => 'required|exists:tb_jabatan,Id_Jabatan',
-            'txtbirthplace' => 'required',
-            'txtdateofbirth' => 'required|date',
-            'txtgender' => 'required|exists:tb_jenis_kelamin,Id_Jenis_Kelamin',
-            'txtdepartment' => 'required|exists:tb_dinas,Id_Dinas',
-            'txtstartingdate' => 'required|date',
-            'txtaddress' => 'required',
-            'txtgroup' => 'required|exists:tb_golongan,Id_Golongan',
-            'txtphone' => 'required',
-        ], [
-            'txtname.required' => 'Nama wajib di isi',
-            'txtid.required' => 'NIP wajib di isi',
-            'txtid.unique' => 'NIP telah digunakan',
-            'txtposition.required' => 'Anda harus memilih jabatan',
-            'txtposition.in' => 'Pilihan jabatan tidak valid',
-            'txtposition.exists' => 'Pilihan jabatan tidak valid',
-            'txtbirthplace.required' => 'Tempat lahir wajib di isi',
-            'txtdateofbirth.required' => 'Tanggal lahir wajib di isi',
-            'txtdateofbirth.date' => 'Format tanggal lahir tidak valid',
-            'txtgender.required' => 'Anda harus memilih jenis kelamin',
-            'txtgender.exists' => 'Pilihan jenis kelamin tidak valid',
-            'txtdepartment.required' => 'Anda harus memilih dinas',
-            'txtdepartment.exists' => 'Pilihan dinas tidak valid',
-            'txtstartingdate.required' => 'Tanggal mulai wajib di isi',
-            'txtstartingdate.date' => 'Format tanggal mulai tidak valid',
-            'txtaddress.required' => 'Alamat wajib di isi',
-            'txtgroup.required' => 'Anda harus memilih golongan',
-            'txtgroup.exists' => 'Pilihan golongan tidak valid',
-            'txtphone.required' => 'Nomor telepon wajib di isi',
-        ]);
-
-        Tb_Pegawai::create([
-            'Nama_Pegawai' => $request->input('txtname'),
-            'NIP' => $request->input('txtid'),
-            'Id_Jabatan' => $request->input('txtposition'),
-            'Tempat_Lahir' => $request->input('txtbirthplace'),
-            'Tanggal_Lahir' => $request->input('txtdateofbirth'),
-            'Id_Jenis_Kelamin' => $request->input('txtgender'),
-            'Id_Dinas' => $request->input('txtdepartment'),
-            'Tanggal_Mulai' => $request->input('txtstartingdate'),
-            'Alamat_Pegawai' => $request->input('txtaddress'),
-            'Id_Golongan' => $request->input('txtgroup'),
-            'Telepon_Pegawai' => $request->input('txtphone'),
-        ]);
+        $tb_pegawai = Tb_Pegawai::find($request->NIP);
+        $user = auth()->user();
+        $tb_pegawai->id_dinas = $user->Id_Dinas;
+        $tb_pegawai->save();
         return redirect()->route('kelolapegawaiopd')->with('success', 'Data berhasil ditambahkan');
     }
 
@@ -114,7 +70,8 @@ class Data_Pegawai_Opd extends Controller
     {    
         $tb_pegawai = Tb_Pegawai::find($id);
         
-        $tb_pegawai->delete();
+        $tb_pegawai->id_dinas = 2;
+        $tb_pegawai->save();
         return redirect()->route('kelolapegawaiopd')->with('success', 'Data berhasil dihapus');
     }
 }

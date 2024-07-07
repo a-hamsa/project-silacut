@@ -9,7 +9,7 @@
     <title>File Permohonan Cuti</title>
     <style>
         *{
-            font-size: 12px;
+            font-size: 10px;
         }
     </style>
 </head>
@@ -158,6 +158,13 @@
                 <tr>
                     <td colspan="3"></td>
                     <td colspan="4" class="text-center fw-bold">Pimpinan OPD</td>
+                </tr>
+                <tr>
+                    <td colspan="3" rowspan="1"></td>
+                    <td colspan="4" rowspan="3">
+                        <p style="color: transparent; font-size: 35px;">TANDA TANGAN</p>
+                        <p>Tanda Tangan</p> 
+                    </td>
                 </tr>
             </tbody>
         </table>

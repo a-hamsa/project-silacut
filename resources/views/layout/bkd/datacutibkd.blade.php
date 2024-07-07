@@ -130,7 +130,7 @@ $(document).ready(function(){
                         {
                             data: null,
                             render: function(data, type, row) {
-                                return '<button type="button" onclick="showPDF.call(this)" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewPdfModal" data-pdf-url="http://127.0.0.1:8000/sk_terakhir/' + data.SK_Terakhir + ',http://127.0.0.1:8000/absen/' + data.Rekap_Absen + ',http://127.0.0.1:8000/scan_cuti/' + data.Permohonan_Cuti + '"><i class="far fa-eye"></i></button>';
+                                return '<button type="button" onclick="showPDF.call(this)" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewPdfModal" data-pdf-url=" ./sk_terakhir/' + data.SK_Terakhir + ', ./absen/' + data.Rekap_Absen + ', ./scan_cuti/' + data.Permohonan_Cuti + '"><i class="far fa-eye"></i></button>';
                             }
                         },
                     ],

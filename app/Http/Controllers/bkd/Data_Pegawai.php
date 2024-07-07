@@ -58,7 +58,7 @@ public function store(Request $request)
     // Validasi input
     $request->validate([
         'txtname' => 'required',
-        'txtid' => 'required|unique:tb_pegawai,NIP|min:18|max:18',
+        'txtid' => 'required|unique:tb_pegawai,NIP|min:15|max:17',
         'txtposition' => 'required|exists:tb_jabatan,Id_Jabatan',
         'txtbirthplace' => 'required',
         'txtdateofbirth' => 'required|date',
