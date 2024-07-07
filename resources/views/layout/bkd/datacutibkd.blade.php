@@ -54,15 +54,18 @@
             <div class="modal-body">
                 <div class="row">
                     <!-- First PDF -->
-                    <div class="col-md-4">
+                    <div class="text-center fw-bold fs-4 my-3">SK Terakhir</div>
+                    <div class="col-md-12">
                         <iframe id="pdfFrame1" src="" width="100%" height="500px" style="border: none;"></iframe>
                     </div>
                     <!-- Second PDF -->
-                    <div class="col-md-4">
+                    <div class="text-center fw-bold fs-4 my-3">Rekap Absen</div>
+                    <div class="col-md-12">
                         <iframe id="pdfFrame2" src="" width="100%" height="500px" style="border: none;"></iframe>
                     </div>
                     <!-- Third PDF -->
-                    <div class="col-md-4">
+                    <div class="text-center fw-bold fs-4 my-3">Permohonan Cuti</div>
+                    <div class="col-md-12">
                         <iframe id="pdfFrame3" src="" width="100%" height="500px" style="border: none;"></iframe>
                     </div>
                 </div>
@@ -102,6 +105,7 @@ $(document).ready(function(){
                             }
                         },
                     ],
+                    search: true,
                     responsive: false,
                     lengthChange: false,
                     autoWidth: false,
@@ -126,7 +130,7 @@ $(document).ready(function(){
                         {
                             data: null,
                             render: function(data, type, row) {
-                                return '<button type="button" onclick="showPDF()" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewPdfModal" data-pdf-url="./sk_terakhir/' + data.SK_Terakhir + ',./absen/' + data.Rekap_Absen + ',./scan_cuti/' + data.Permohonan_Cuti + '"><i class="far fa-eye"></i></button>';
+                                return '<button type="button" onclick="showPDF.call(this)" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewPdfModal" data-pdf-url="http://127.0.0.1:8000/sk_terakhir/' + data.SK_Terakhir + ',http://127.0.0.1:8000/absen/' + data.Rekap_Absen + ',http://127.0.0.1:8000/scan_cuti/' + data.Permohonan_Cuti + '"><i class="far fa-eye"></i></button>';
                             }
                         },
                     ],
@@ -145,18 +149,23 @@ $(document).ready(function(){
     }
 
     getTableData();
-    function showPDF() {
-        document.querySelectorAll('button[data-bs-toggle="modal"]').forEach(button => {
-            button.addEventListener('click', function () {
-                const pdfUrls = this.getAttribute('data-pdf-url').split(',');
-                console.log(pdfUrls)
-                // Set the src for each iframe
-                document.getElementById('pdfFrame1').src = pdfUrls[0].trim();
-                document.getElementById('pdfFrame2').src = pdfUrls[1].trim();
-                document.getElementById('pdfFrame3').src = pdfUrls[2].trim();
-            });
-        });
-    }
 });
+function showPDF() {
+    const pdfUrls = this.getAttribute('data-pdf-url').split(',');
+    console.log(pdfUrls)
+    document.getElementById('pdfFrame1').src = pdfUrls[0].trim();
+    document.getElementById('pdfFrame2').src = pdfUrls[1].trim();
+    document.getElementById('pdfFrame3').src = pdfUrls[2].trim();
+}
+// document.querySelectorAll('button[data-bs-toggle="modal"]').forEach(button => {
+//     button.addEventListener('click', function () {
+//         const pdfUrls = this.getAttribute('data-pdf-url').split(',');
+//         console.log(pdfUrls)
+//         // Set the src for each iframe
+//         document.getElementById('pdfFrame1').src = pdfUrls[0].trim();
+//         document.getElementById('pdfFrame2').src = pdfUrls[1].trim();
+//         document.getElementById('pdfFrame3').src = pdfUrls[2].trim();
+//     });
+// });
 </script>
 @endsection

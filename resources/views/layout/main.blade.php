@@ -43,7 +43,14 @@
 
     <!-- SweetAlert -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-
+    <style>
+        table {
+            width: 100% !important;
+        }
+        .dt-scroll-headInner {
+            width: 100% !important;
+        }
+    </style>
 </head>
 
 <body>
