@@ -52,7 +52,6 @@
                                         <i class="far fa-edit"></i>
                                     </a>
 
-
                                     <form action="{{ route('deletepegawaiopd', ['id' => $pgw->NIP]) }}" method="POST">
                                         @csrf
                                         @method('delete')

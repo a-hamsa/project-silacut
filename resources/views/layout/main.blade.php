@@ -43,7 +43,14 @@
 
     <!-- SweetAlert -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-
+    <style>
+        table {
+            width: 100% !important;
+        }
+        .dt-scroll-headInner {
+            width: 100% !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -93,20 +100,20 @@
     <script>
         $(function() {
             $(document).on('click', '.delete', function(e) {
-                e.preventDefault();
+                e.preventDefault(); 
                 var form = $(this).closest('form');
                 var nama = $(this).data('nama');
                 var title, text;
-    
-                // Mengecek apakah tombol delete terkait dengan pegawai atau OPD
+
+                // Determine the title and text based on the data attributes
                 if ($(this).data('nip')) {
-                    title = 'Anda akan menghapus pegawai dengan NIP: ';
+                    title = 'Anda akan menghapus';
                     text = $(this).data('nip') + ' - ' + nama;
                 } else {
                     title = 'Apakah Anda yakin?';
-                    text = 'Anda akan menghapus pengguna: ' + nama;
+                    text = 'Anda akan menghapus: ' + nama;
                 }
-    
+
                 Swal.fire({
                     title: title,
                     text: text,
@@ -118,7 +125,7 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        form.submit();
+                        form.submit(); // Submit the form if the user confirms
                     }
                 });
             });

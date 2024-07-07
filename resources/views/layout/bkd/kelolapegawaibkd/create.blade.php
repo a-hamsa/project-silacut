@@ -76,7 +76,7 @@
                                 <div class="input-group">
                                     <select class="form-select @error('txtgender') is-invalid @enderror"
                                         aria-label="Default select example" id="txtgender" name="txtgender">
-                                        <option selected>Pilih Jenis Kelamin</option>
+                                        <option selected hidden>Pilih Jenis Kelamin</option>
                                         @foreach ($tb_jenis_kelamin as $tbjk)
                                             <option value="{{ $tbjk->Id_Jenis_Kelamin }}"
                                                 {{ old('txtgender') == $tbjk->Id_Jenis_Kelamin ? 'selected' : '' }}>
@@ -97,7 +97,7 @@
                                 <div class="input-group">
                                     <select class="form-select @error('txtposition') is-invalid @enderror"
                                         aria-label="Default select example" name="txtposition">
-                                        <option selected>Pilih Jabatan</option>
+                                        <option selected hidden>Pilih Jabatan</option>
                                         @foreach ($tb_jabatan as $tbj)
                                             <option value="{{ $tbj->Id_Jabatan }}"
                                                 {{ old('txtposition') == $tbj->Id_Jabatan ? 'selected' : '' }}>
@@ -116,10 +116,12 @@
                             <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label class="form-label">Dinas</label>
                                 <div class="input-group">
-                                    <select class="form-select @error('txtdepartment') is-invalid @enderror"
-                                        aria-label="Default select example" name="txtdepartment">
-                                        <option selected>Pilih Dinas</option>
+                                    <select class="form-select @error('txtdepartment') is-invalid @enderror" aria-label="Default select example" name="txtdepartment">
+                                        <option selected hidden>Pilih Dinas</option>
                                         @foreach ($tb_dinas as $tbd)
+                                            @if ($tbd->Dinas == "BKD" || $tbd->Dinas == '-') 
+                                                @continue
+                                            @endif 
                                             <option value="{{ $tbd->Id_Dinas }}"
                                                 {{ old('txtdepartment') == $tbd->Id_Dinas ? 'selected' : '' }}>
                                                 {{ $tbd->Dinas }}
@@ -165,7 +167,7 @@
                                 <div class="input-group">
                                     <select class="form-select @error('txtgroup') is-invalid @enderror"
                                         aria-label="Default select example" name="txtgroup">
-                                        <option selected>Pilih Golongan</option>
+                                        <option selected hidden>Pilih Golongan</option>
                                         @foreach ($tb_golongan as $tbg)
                                             <option value="{{ $tbg->Id_Golongan }}"
                                                 {{ old('txtgroup') == $tbg->Id_Golongan ? 'selected' : '' }}>

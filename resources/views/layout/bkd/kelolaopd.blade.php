@@ -27,11 +27,11 @@
 
                 <tbody>
                     @foreach ($tb_dinas as $dns)
-                        @if($dns->Dinas == "BKD")
+                        @if($dns->Dinas == "BKD" || $dns->Dinas == "-")
                             @continue
                         @endif
                         <tr>
-                            <th scope="row">{{ $loop->iteration -1 }}</th>
+                            <th scope="row">{{ $loop->iteration -2 }}</th>
                             <td>{{ $dns->Dinas }}</td>
                             {{-- <td>{{ $pgw->Nama_Pegawai }}</td>
                             <td>{{ $pgw->dinas->Dinas }}</td> --}}

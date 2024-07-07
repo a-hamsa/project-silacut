@@ -30,8 +30,11 @@
 
                 <tbody>
                     @foreach ($tb_pegawai as $pgw)
+                        @if($pgw->dinas->Dinas == "BKD")
+                            @continue
+                        @endif
                         <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
+                            <th scope="row">{{ ($loop->iteration - 1) }}</th>
                             <td>{{ $pgw->NIP }}</td>
                             <td>{{ $pgw->Nama_Pegawai }}</td>
                             <td>{{ $pgw->dinas->Dinas }}</td>

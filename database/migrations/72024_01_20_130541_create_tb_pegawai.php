@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('Id_Golongan')->unsigned();
             $table->integer('Kuota_Cuti')->default(12);
             $table->string('Alamat_Pegawai', 100);
-            $table->integer('Telepon_Pegawai');
+            $table->string('Telepon_Pegawai');
 
             $table->foreign('Id_Dinas')->references('Id_Dinas')->on('tb_dinas');
             $table->foreign('Id_Golongan')->references('Id_Golongan')->on('tb_golongan');
@@ -33,7 +33,7 @@ return new class extends Migration
 
         DB::table('tb_pegawai')->insert([
             ['NIP' => '12345', 'Id_Dinas' => 1, 'Nama_Pegawai' => 'John Doe', 'Tanggal_Lahir' => '1980-01-01','Tempat_Lahir' => 'Makassar', 'Id_Jenis_Kelamin' => 1, 'Id_Jabatan' => 1, 'Tanggal_Mulai' => '2020-01-01', 'Id_Golongan' => 1,'Kuota_Cuti' => 12, 'Alamat_Pegawai' => '123 Main St', 'Telepon_Pegawai' => 123456789],
-            ['NIP' => '67890', 'Id_Dinas' => 2, 'Nama_Pegawai' => 'Jane Smith', 'Tanggal_Lahir' => '1985-05-05','Tempat_Lahir' => 'Makassar', 'Id_Jenis_Kelamin' => 2, 'Id_Jabatan' => 2, 'Tanggal_Mulai' => '2021-02-01', 'Id_Golongan' => 2,'Kuota_Cuti' => 12, 'Alamat_Pegawai' => '456 Elm St', 'Telepon_Pegawai' => 987654321],
+            ['NIP' => '67890', 'Id_Dinas' => 3, 'Nama_Pegawai' => 'Jane Smith', 'Tanggal_Lahir' => '1985-05-05','Tempat_Lahir' => 'Makassar', 'Id_Jenis_Kelamin' => 2, 'Id_Jabatan' => 2, 'Tanggal_Mulai' => '2021-02-01', 'Id_Golongan' => 2,'Kuota_Cuti' => 12, 'Alamat_Pegawai' => '456 Elm St', 'Telepon_Pegawai' => 987654321],
         ]);
     }
 
