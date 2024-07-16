@@ -35,13 +35,8 @@ Data Pengguna Kelola Pengguna
                    <td>
                     <div class="btn-group" role="group" aria-label="Basic example">                
                         <!-- Tambahkan margin-right di sini untuk memberikan jarak -->
-                        <a href="kelolapengguna/{{ $tbu->id }}/edit"" class="btn btn-outline-warning btn-sm" style="margin-right: 5px; border-radius:5px;"><i class="far fa-edit"></i></a>
+                        <a href="kelolapengguna/{{ $tbu->id }}/edit" class="btn btn-outline-warning btn-sm" style="margin-right: 5px; border-radius:5px;"><i class="far fa-edit"></i></a>
                 
-                        {{-- <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteForm">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" value="Delete" class="btn btn-outline-secondary btn-sm" data-nama="{{ $tbu->username }}" style="border-radius:5px;"><i class="far fa-trash-alt"></i></button>
-                        </form> --}}
                         <form action="kelolapengguna/{{ $tbu->id }}" method="POST" id="deleteFormKelolaPengguna">
                             @csrf
                             @method('delete')
@@ -58,40 +53,32 @@ Data Pengguna Kelola Pengguna
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.delete-btn');
 
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                const username = this.getAttribute('data-nama');
+                const form = this.closest('form');
 
-@foreach($tb_user as $tbu)
-<!-- Modal Diagnosa-->
-<div class="modal fade" id="viewpengguna" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewpenggunalabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="viewpenggunalabel">Data Pengguna</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <table cellpadding="5">
-                    <tr>
-                        <td><b>Username</b></td>
-                        <td>: </td>
-                    </tr>
-                    <tr>
-                        <td><b>Satuan Kerja</b></td>
-                        <td>: </td>
-                    </tr>
-                   
-                </table>
-               
-
-
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-        </div>
-    </div>
-</div>
-@endforeach
-
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: `You won't be able to revert this! Do you want to delete ${username}?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
 @endsection

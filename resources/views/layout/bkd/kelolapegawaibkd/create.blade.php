@@ -153,7 +153,8 @@
                                 <label for="txtaddress" class="form-label">Alamat</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control @error('txtaddress') is-invalid @enderror"
-                                        placeholder="Masukkan Alamat Pegawai" name="txtaddress" id="txtaddress">
+                                        placeholder="Masukkan Alamat Pegawai" name="txtaddress" id="txtaddress"
+                                        value="{{ old('txtaddress') }}">
                                     @error('txtaddress')
                                         <div class="invalid-feedback">
                                             {{ $message }}
