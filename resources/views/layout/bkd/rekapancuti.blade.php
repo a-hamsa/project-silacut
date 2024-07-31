@@ -82,9 +82,9 @@ $(document).ready(function() {
                 });
 
                 $('#data_pegawai').DataTable({
-                    createdRow: function(row, data, index) {
-                        $('td', row).eq(0).html(index + 1);
-                    },
+                    // createdRow: function(row, data, index) {
+                    //     $('td', row).eq(0).html(index + 1);
+                    // },
                     columnDefs: [
                         {
                             targets: "_all",
@@ -105,7 +105,12 @@ $(document).ready(function() {
                     autoWidth: false,
                     data: response,
                     columns: [
-                        { data: null },
+                        {
+                            data: null,
+                            render: function(data, type, row, meta) {
+                                return meta.row + 1; // This renders the row index starting from 1
+                            }
+                        },
                         { data: "NIP" },
                         { data: "Nama_Pegawai" },
                         { data: "Id_Jenis_Cuti" },
