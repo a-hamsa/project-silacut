@@ -29,9 +29,9 @@ class Data_Cuti_Opd extends Controller
         $tb_pegawai = Tb_Pegawai::where("NIP", $pegawai)->first();
         $tb_pegawai->NIP = (string) $tb_pegawai->NIP;
     
-        $sisa_cuti = Tb_Cuti::where("NIP", $pegawai)->count();
+        $sisa_cuti = Tb_Cuti::where("NIP", $pegawai)->sum("Lama_Cuti");
 
-        $tb_pegawai->sisa_cuti = 12 - $sisa_cuti;
+        $tb_pegawai->sisa_cuti = $tb_pegawai->Kuota_Cuti - $sisa_cuti;
         $jabatan = Tb_Jabatan::select("Jabatan")->where("id_Jabatan", $tb_pegawai->Id_Jabatan)->first();
         $dinas = Tb_Dinas::select("Dinas")->where("Id_Dinas", $tb_pegawai->Id_Dinas)->first();
         $golongan = Tb_Golongan::select("Golongan")->where("id_Golongan", $tb_pegawai->Id_Golongan)->first();
@@ -43,6 +43,17 @@ class Data_Cuti_Opd extends Controller
     }
 
     public function store(Request $request){
+
+        $pegawai = $request->input("pegawai");
+        $tb_pegawai = Tb_Pegawai::where("NIP", $pegawai)->first();
+        $sisa_cuti = Tb_Cuti::where("NIP", $pegawai)->sum("Lama_Cuti");
+    
+        $banyak_cuti = $tb_pegawai->Kuota_Cuti - $sisa_cuti;
+    
+        if ($request->input('lama_cuti') > $banyak_cuti) {
+            return redirect()->back()->with('failed', 'Banyak cuti tidak mencakup');
+        }
+
         $validatedData = $request->validate([
             'pegawai' => 'required',
             'jenis_cuti' => 'required',

@@ -65,14 +65,11 @@ $(document).ready(function() {
             },
             success: function(response){
                 console.log(response)
-                let hakCuti = 12; 
+                let hakCuti = 12;
                 let remainingLeaves = {};
                 
                 response.forEach(employee => {
-                    let startDate = new Date(employee.Tanggal_Mulai_Cuti);
-                    let endDate = new Date(employee.Tanggal_Berakhir_Cuti);
-                    let timeDiff = endDate - startDate;
-                    let daysTaken = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; 
+                    let daysTaken = employee.Lama_Cuti; 
                     if (!remainingLeaves[employee.NIP]) {
                         remainingLeaves[employee.NIP] = hakCuti;
                     }
