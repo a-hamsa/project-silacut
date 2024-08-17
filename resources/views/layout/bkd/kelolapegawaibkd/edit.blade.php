@@ -167,6 +167,20 @@
                             </div>
 
                             <div class="col-md-12" style=" margin-bottom:15px;">
+                                <label for="txtKuota" class="form-label">Kuota Cuti</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control @error('txtKuota') is-invalid @enderror"
+                                        placeholder="Masukkan Banyak Cuti" name="Kuota_Cuti" id="txtKuota"
+                                        value="{{ old('Kuota_Cuti', $tb_pegawai->Kuota_Cuti) }}">
+                                    @error('txtKuota')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" style=" margin-bottom:15px;">
                                 <label class="form-label">Golongan</label>
                                 <div class="input-group">
                                     <select class="form-select @error('txtgroup') is-invalid @enderror"
