@@ -24,7 +24,11 @@ return new class extends Migration
             $table->string('SK_Terakhir', 256)->nullable();
             $table->string('Rekap_Absen', 256)->nullable();
             $table->string('Permohonan_Cuti', 256)->nullable();
-            
+    
+            // Making Verifikasi nullable with no default value
+            $table->boolean('Verifikasi')->nullable(); // This allows true, false, and null
+            $table->string('Alasan_Penolakan', 256)->nullable(); // Optional rejection reason
+    
             $table->foreign('NIP')->references('NIP')->on('tb_pegawai')->onDelete('cascade');
             $table->foreign('Id_Jenis_Cuti')->references('Id_Jenis_Cuti')->on('tb_jenis_cuti');
         });

@@ -48,12 +48,23 @@
                 </tr>
                 <tr>
                     <td>Masa Kerja</td>
-                    <td colspan="6">{{
-                            now()->diffInYears($tb_pegawai->Tanggal_Mulai) . ' Tahun | ' .
-                            now()->diffInMonths($tb_pegawai->Tanggal_Mulai) . ' Bulan'
-                        }}
+                    <td colspan="6">
+                        @php
+                            $startDate = \Carbon\Carbon::parse($tb_pegawai->Tanggal_Mulai); // Tanggal mulai kerja
+                            $now = \Carbon\Carbon::now(); // Tanggal saat ini
+                
+                            // Hitung selisih tahun
+                            $years = $now->diffInYears($startDate);
+                
+                            // Hitung selisih bulan (sisa bulan setelah tahun dikurangi)
+                            $months = $now->diffInMonths($startDate) % 12;
+                        @endphp
+                
+                        {{-- Tampilkan hasil perhitungan di sini --}}
+                        {{ $years }} Tahun | {{ $months }} Bulan
                     </td>
                 </tr>
+                
                 <tr>
                     <td>Unit Kerja</td>
                     <td colspan="6">{{$tb_pegawai->dinas->Dinas}}</td>

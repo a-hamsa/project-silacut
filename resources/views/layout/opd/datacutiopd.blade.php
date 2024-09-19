@@ -520,6 +520,7 @@
                         <th>Jenis Cuti</th>
                         <th>Tanggal Cuti</th>
                         <th>Diajukan</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -533,6 +534,15 @@
                             <td>{{ $tbc->jeniscuti->Nama_Jenis_Cuti}}</td>
                             <td>{{ $tbc->Tanggal_Mulai_Cuti }} s.d {{ $tbc->Tanggal_Berakhir_Cuti }}</td>
                             <td>{{ $tbc->Tanggal_Pengajuan}}</td>
+                            <td>
+                                @if ($tbc->Verifikasi === true)
+                                    <span class="badge bg-success">Diterima</span>
+                                @elseif ($tbc->Verifikasi === false)
+                                    <span class="badge bg-danger">Ditolak</span>
+                                @else
+                                    <span class="badge bg-warning">Belum diproses</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-outline-info btn-sm" style="margin-right: 5px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#viewModal{{ $tbc->Id_Data_Cuti }}"><i class="far fa-eye"></i></button>                                    
@@ -571,13 +581,28 @@ $(document).ready(function(){
             },
             success: function(response){
                 console.log(response)
+                // Ambil tanggal saat ini dan tanggal mulai kerja
                 let currentDate = new Date();
                 let masa_kerja = new Date(response.Tanggal_Mulai);
+                
+                // Perhitungan tahun dan bulan
                 let tahun = currentDate.getFullYear() - masa_kerja.getFullYear();
-                let bulan = currentDate.getMonth() - masa_kerja.getMonth() + 1;
+                let bulan = currentDate.getMonth() - masa_kerja.getMonth();
+                let hari = currentDate.getDate() - masa_kerja.getDate();
+
+                // Jika bulan kurang dari 0, maka kurangi 1 tahun
                 if (bulan < 0) {
-                    tahun = tahun - 1
-                    bulan = bulan + 12;
+                    tahun--;
+                    bulan += 12;
+                }
+                
+                // Jika hari kurang dari 0, kurangi 1 bulan
+                if (hari < 0) {
+                    bulan--;
+                    if (bulan < 0) {
+                        bulan += 12;
+                        tahun--;
+                    }
                 }
                 $('#nama').val(response.Nama_Pegawai);
                 $('#nip').val(response.NIP.toString());

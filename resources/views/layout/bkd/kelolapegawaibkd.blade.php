@@ -30,11 +30,11 @@
 
                 <tbody>
                     @foreach ($tb_pegawai as $pgw)
-                        @if($pgw->dinas->Dinas == "BKD")
+                        {{-- @if($pgw->dinas->Dinas == "BKD")
                             @continue
-                        @endif
+                        @endif --}}
                         <tr>
-                            <th scope="row">{{ ($loop->iteration - 1) }}</th>
+                            <th scope="row">{{ $loop->iteration + ($tb_pegawai->currentPage() - 1) * $tb_pegawai->perPage() }}</th>
                             <td>{{ $pgw->NIP }}</td>
                             <td>{{ $pgw->Nama_Pegawai }}</td>
                             <td>{{ $pgw->dinas->Dinas }}</td>
@@ -75,6 +75,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {{ $tb_pegawai->onEachSide(1)->links('pagination::bootstrap-4') }}
+            </div>
             <h1 class="card-title"></h1>
         </div>
     </div>

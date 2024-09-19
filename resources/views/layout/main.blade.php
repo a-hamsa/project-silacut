@@ -50,6 +50,9 @@
         .dt-scroll-headInner {
             width: 100% !important;
         }
+        .textarea-reject{
+            width: 50%
+        }
     </style>
 </head>
 

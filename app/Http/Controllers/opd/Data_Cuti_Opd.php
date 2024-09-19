@@ -51,7 +51,7 @@ class Data_Cuti_Opd extends Controller
         $banyak_cuti = $tb_pegawai->Kuota_Cuti - $sisa_cuti;
     
         if ($request->input('lama_cuti') > $banyak_cuti) {
-            return redirect()->back()->with('failed', 'Banyak cuti tidak mencakup');
+            return redirect()->back()->with('failed', 'Kuota cuti anda tidak mencukupi.');
         }
 
         $validatedData = $request->validate([
@@ -141,6 +141,7 @@ class Data_Cuti_Opd extends Controller
         $tbCuti->Tanggal_Berakhir_Cuti = $validatedData['sampai'];
         $tbCuti->Lama_Cuti = $validatedData['lama_cuti'];
         $tbCuti->Alamat_Cuti = $validatedData['alamat_cuti'];
+        $tbCuti->Verifikasi = null;
         
         // Save the Tb_Cuti instance
         $tbCuti->save();
@@ -155,6 +156,6 @@ class Data_Cuti_Opd extends Controller
         $tb_cuti = Tb_Cuti::find($id);
         $tb_cuti->delete();
         // return redirect()->route('kelolapegawaibkd.destroy')->with('success', 'Data berhasil dihapus');
-        return redirect('kelolapegawaibkd')->with('success', 'Data berhasil dihapus');
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
 }

@@ -7,18 +7,18 @@ use App\Http\Controllers\bkd\Data_Pegawai as BkdData_Pegawai;
 use App\Http\Controllers\bkd\Kelola_OPD;
 use App\Http\Controllers\bkd\Kelola_Pengguna;
 use App\Http\Controllers\bkd\Rekapan_Cuti;
-
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\opd\Dashboard_Opd;
 use App\Http\Controllers\opd\Data_Cuti_Opd;
 use App\Http\Controllers\opd\Data_Pegawai_Opd;
+use App\Http\Controllers\StatusController;
 use App\Http\Middleware\CekUserLogin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 Route::get('/', [LayoutController::class, 'index'])->middleware('auth');
-
+Route::get('/status/{NIP}/{Id_Data_Cuti}', [StatusController::class, 'showStatus'])->name('status.show');
 
 Route::group(['middleware' => ['auth']], function(){
     Route::post('/get_cuti', [Rekapan_Cuti::class, 'getCuti'])->name('get_cuti');
@@ -47,6 +47,9 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('datacutibkd', [Data_Cuti_Bkd::class, 'index'])->name('datacutibkd');
         Route::post('data_cuti_bkd', [Data_Cuti_Bkd::class, 'data_cuti_bkd'])->name('data_cuti_bkd');
         Route::get('rekapancuti', [Rekapan_Cuti::class, 'index'])->name('rekapancuti');
+        Route::post('/cuti/accept/{id}', [Data_Cuti_Bkd::class, 'acceptCuti'])->name('cuti.accept');
+        Route::post('/cuti/reject/{id}', [Data_Cuti_Bkd::class, 'rejectCuti'])->name('cuti.reject');
+
     });
     Route::group(['middleware' => [CekUserLogin::class.':2']], function(){
         Route::get('/fileCutiOPD', [Kelola_OPD::class, 'generatePdf'])->name('generatePdfOPD');

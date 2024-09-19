@@ -164,12 +164,12 @@
                             </div>
 
                             <div class="col-md-12" style=" margin-bottom:15px;">
-                                <label for="txtKuota" class="form-label">Kuota Cuti</label>
+                                <label for="Kuota_Cuti" class="form-label">Kuota Cuti</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control @error('txtKuota') is-invalid @enderror"
+                                    <input type="number" class="form-control @error('Kuota_Cuti') is-invalid @enderror"
                                         placeholder="Masukkan Banyak Cuti" name="Kuota_Cuti" id="txtKuota"
                                         value="{{ old('Kuota_Cuti') }}">
-                                    @error('txtKuota')
+                                    @error('Kuota_Cuti')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

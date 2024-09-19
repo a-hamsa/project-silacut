@@ -10,7 +10,7 @@ class Tb_Cuti extends Model
     use HasFactory;
     protected $table = 'tb_cuti';
     protected $primaryKey = 'Id_Data_Cuti';
-    
+
     protected $guarded = [];
 
     public $timestamps = false;
@@ -23,4 +23,8 @@ class Tb_Cuti extends Model
     {
         return $this->belongsTo(Tb_Jenis_Cuti::class, 'Id_Jenis_Cuti');
     }
+
+    protected $casts = [
+        'Verifikasi' => 'boolean',
+    ];
 }

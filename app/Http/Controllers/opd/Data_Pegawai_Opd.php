@@ -18,7 +18,7 @@ class Data_Pegawai_Opd extends Controller
     public function index()
     {
         $user = auth()->user();
-        $tb_pegawai = Tb_Pegawai::where('Id_Dinas', $user->Id_Dinas)->get();
+        $tb_pegawai = Tb_Pegawai::where('Id_Dinas', $user->Id_Dinas)->paginate(15);
         return view('layout.opd.kelolapegawai', compact(['user','tb_pegawai']));
     }
 

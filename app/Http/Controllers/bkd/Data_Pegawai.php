@@ -16,7 +16,7 @@ class Data_Pegawai extends Controller
     public function index()
     {
         $user = auth()->user();
-        $tb_pegawai = Tb_Pegawai::all();
+        $tb_pegawai = Tb_Pegawai::paginate(15);
         return view('layout.bkd.kelolapegawaibkd', compact(['user','tb_pegawai']));
     }
 
@@ -66,7 +66,7 @@ class Data_Pegawai extends Controller
             'txtdepartment' => 'required|exists:tb_dinas,Id_Dinas',
             'txtstartingdate' => 'required|date',
             'txtaddress' => 'required',
-            'txtKuota' => 'required',
+            'Kuota_Cuti' => 'required',
             'txtgroup' => 'required|exists:tb_golongan,Id_Golongan',
             'txtphone' => 'required',
         ], [
@@ -86,7 +86,7 @@ class Data_Pegawai extends Controller
             'txtstartingdate.required' => 'Tanggal mulai wajib di isi',
             'txtstartingdate.date' => 'Format tanggal mulai tidak valid',
             'txtaddress.required' => 'Alamat wajib di isi',
-            'txtKuota.required' => 'Mohon isi banyak kuota cuti',
+            'Kuota_Cuti.required' => 'Mohon isi banyak kuota cuti',
             'txtgroup.required' => 'Anda harus memilih golongan',
             'txtgroup.exists' => 'Pilihan golongan tidak valid',
             'txtphone.required' => 'Nomor telepon wajib di isi',

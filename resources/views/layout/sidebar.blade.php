@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-white-primary elevation-4 d-flex flex-column h-100 pb-4">
+<aside class="main-sidebar sidebar-white-primary elevation-4 d-flex flex-column pb-4">
 @if($user->Id_Role == 1)
   <a href="{{ route('dashboardbkd') }}" class="brand-link text-decoration-none">
     <img src="{{asset('assets/img/silacut.png')}}" alt="Logo" class="img-fluid">
@@ -8,7 +8,7 @@
     <img src="{{asset('assets/img/silacut.png')}}" alt="Logo" class="img-fluid">
   </a>
 @endif
-  <div class="sidebar text-white d-flex flex-column h-100">
+  <div class="sidebar text-white d-flex flex-column">
     <nav class="mt-3">
       <ul class="nav nav-pills nav-sidebar" style="font-size: 18px;" data-widget="treeview" role="menu" data-accordion="false">
         @include('layout.menu')
